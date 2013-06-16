@@ -12,5 +12,6 @@
     <class>entities.Author</class>
     <class>entities.Order</class>
     <class>entities.OrderItem</class>
+    <class>entities.Admin</class>
   </persistence-unit>
 </persistence>

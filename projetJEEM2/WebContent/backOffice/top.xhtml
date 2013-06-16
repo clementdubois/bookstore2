@@ -1,11 +1,12 @@
 <ui:composition xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://java.sun.com/jsf/facelets"
   xmlns:f="http://java.sun.com/jsf/core" xmlns:h="http://java.sun.com/jsf/html">
   <h:graphicImage name="logo.png" library="images" alt="" width="179" height="76" />
+  <div>Back-Office</div>
   <div style="float: right;"> 
     <h:form id="topForm">
-      <h:panelGroup rendered="#{clientController.loggedIn}">
-        #{currentClient.login}
-        <h:commandLink action="#{clientController.doLogout}" value="Se déconnecter" />
+      <h:panelGroup rendered="#{adminController.loggedIn}">
+        #{currentAdmin.login}
+        <h:commandLink action="#{adminController.doLogout}" value="Se déconnecter" />
       </h:panelGroup>
     </h:form>
   </div>
