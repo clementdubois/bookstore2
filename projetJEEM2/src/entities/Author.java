@@ -10,7 +10,7 @@ import java.util.*;
 @Entity()
 @XmlRootElement
 
-public class Author extends Persistent {
+public class Author extends Persistent{
     
     private String firstName;
     private String lastName;

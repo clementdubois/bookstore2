@@ -1,4 +1,4 @@
-package controller;
+package controller.frontOffice;
 
 import java.io.Serializable;
 
@@ -7,6 +7,7 @@ import javax.enterprise.context.SessionScoped;
 import javax.enterprise.inject.Produces;
 import javax.inject.Inject;
 import javax.inject.Named;
+import javax.persistence.EntityManager;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -16,16 +17,17 @@ import entities.Client;
 
 import annotations.LoggedIn;
 import beans.LoginForm;
+import beans.MessageBean;
 
 @Named
 @SessionScoped
 public class ClientController implements Serializable {
-
-	
-	private static final long serialVersionUID = 1L;
-	private static Logger log = LoggerFactory.getLogger(ClientController.class);
+	@Inject
+	private Logger log; //= LoggerFactory.getLogger(ClientController.class);
 	@Inject
 	private LoginForm loginForm;
+	@Inject
+	private MessageBean messageBean;
 	@EJB
 	private ClientService clientService;
 

@@ -1,6 +1,7 @@
 package beans;
 
 import javax.enterprise.context.RequestScoped;
+import javax.faces.component.UIInput;
 import javax.inject.Named;
 import javax.validation.constraints.NotNull;
 
@@ -11,6 +12,9 @@ import org.hibernate.validator.constraints.Length;
 public class LoginForm {
   private String login;
   private String password;
+  
+  private UIInput UiLogin;
+ 
 
   @NotNull
   @Length(min = 3, max = 25)
@@ -28,4 +32,12 @@ public class LoginForm {
   public void setPassword(String password) {
     this.password = password;
   }
+	public UIInput getUiLogin() {
+		return UiLogin;
+	}
+	public void setUiLogin(UIInput uiLogin) {
+		UiLogin = uiLogin;
+	}
+  
+  
 }
