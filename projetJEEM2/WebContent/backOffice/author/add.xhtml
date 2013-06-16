@@ -1,0 +1,16 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://java.sun.com/jsf/facelets"
+  xmlns:f="http://java.sun.com/jsf/core" xmlns:h="http://java.sun.com/jsf/html" template="../template.xhtml">
+  <ui:define name="content">
+	   <h:form id="contentForm">
+	   		<h:panelGrid columns="3">
+		       	<h:outputText value="#{strings['firstName']}" />
+		       	<h:inputText id="firstName" value="#{authorForm.firstName}" required="true" />
+		       	<h:message for="firstName"></h:message>
+		       	<h:outputText value="#{strings['lastName']}" />
+		       	<h:inputText id="lastName" value="#{authorForm.lastName}" required="true" />
+		       	<h:message for="lastName"></h:message>
+		    </h:panelGrid>
+   			<h:commandButton action="#{authorController.addAuthor}" value="#{strings['add']}"/>
+    </h:form>
+  </ui:define>
+</ui:composition>
