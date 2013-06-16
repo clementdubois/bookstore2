@@ -20,7 +20,8 @@ import javax.persistence.OneToMany;
 @Entity()
 @NamedQueries({
 @NamedQuery(name = "Client.findAll", query = "Select c From Client c"),
-@NamedQuery(name = "Client.findLikeOnLogin", query = "Select c From Client c where c.login like :like")
+@NamedQuery(name = "Client.findLikeOnLogin", query = "Select c From Client c where c.login like :like"),
+@NamedQuery(name = "Client.findByLoginAndPassword", query = "Select c From Client c where c.login = :login and c.password = :password")
 })
 public class Client extends Persistent {
   private String login;

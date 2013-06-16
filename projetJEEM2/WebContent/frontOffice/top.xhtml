@@ -1,12 +1,24 @@
-<ui:composition xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://java.sun.com/jsf/facelets"
-  xmlns:f="http://java.sun.com/jsf/core" xmlns:h="http://java.sun.com/jsf/html">
-  <h:graphicImage name="logo.png" library="images" alt="" width="179" height="76" />
-  <div style="float: right;"> 
-    <h:form id="topForm">
-      <h:panelGroup rendered="#{clientController.loggedIn}">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:dgc="http://java.sun.com/jsf/composite/composants">
+	<h:graphicImage name="logo.png" library="images" alt="" width="179"
+		height="76" />
+	<div style="float: right;">
+		<h:form id="topForm">
+			<dgc:localeChooser />
+			<h:panelGroup rendered="#{clientController.loggedIn}">
         #{currentClient.login}
-        <h:commandLink action="#{clientController.doLogout}" value="Se déconnecter" />
-      </h:panelGroup>
-    </h:form>
-  </div>
+        <h:commandLink action="#{clientController.doLogout}"
+					value="Se déconnecter" />
+			</h:panelGroup>
+			<h:panelGroup rendered="#{!clientController.loggedIn}">
+				<h:commandLink action="/frontOffice/login.jsf" value="Se connecter" />
+				<h:outputText value="&#160;" />
+				<h:commandLink action="/frontOffice/inscription.jsf"
+					value="S'inscrire" />
+			</h:panelGroup>
+		</h:form>
+	</div>
 </ui:composition>

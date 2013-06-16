@@ -54,7 +54,7 @@ public class ClientController implements Serializable {
 			messageBean.addMessage("clientNotFound");
 		}
 
-		return "login";
+		return "/frontOffice/login";
 	}
 	
 	public boolean isLoggedIn() {
@@ -63,20 +63,20 @@ public class ClientController implements Serializable {
 
 	public String doLogout() {
 		currentClient = null;
-		return "login";
+		return "/frontOffice/login";
 	}
 	
 	public String doInscription(){
 		try {
 			clientService.inscription(inscriptionForm.getLogin(), inscriptionForm.getPassword(), inscriptionForm.getPasswordConfirmation());
-			return "login";
+			return "/frontOffice/login";
 		} catch (LoginUsedException e) {
 			messageBean.addMessage("clientAlreadyExists");
-			return "inscription";
+			return "/frontOffice/inscription";
 			
 		} catch (UnconfirmedPasswordException e) {
 			messageBean.addMessage("passwordsDoesntMatch");
-			return "inscription";
+			return "/frontOffice/inscription";
 		}
 
 	}
