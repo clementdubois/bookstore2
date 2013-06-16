@@ -7,6 +7,11 @@
         #{currentClient.login}
         <h:commandLink action="#{clientController.doLogout}" value="Se déconnecter" />
       </h:panelGroup>
+      <h:panelGroup rendered="#{!clientController.loggedIn}">
+        <h:commandLink action="/frontOffice/login.jsf" value="Se connecter" />
+        <h:outputText value="&#160;" />
+        <h:commandLink action="/frontOffice/inscription.jsf" value="S'inscrire" />
+      </h:panelGroup>
     </h:form>
   </div>
 </ui:composition>
