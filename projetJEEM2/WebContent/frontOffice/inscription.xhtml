@@ -4,13 +4,13 @@
     <h:form id="contentForm">
    	  <h:messages globalOnly="true"/>
       <h:panelGrid columns="3">
-        <h:outputText value="#{strings['client.login']}" />
+        <h:outputText value="#{strings['login']}" />
         <h:inputText id="login" value="#{inscriptionForm.login}" required="true"/>
         <h:message for="login"></h:message>
-        <h:outputText value="#{strings['client.password']}" />
+        <h:outputText value="#{strings['password']}" />
         <h:inputSecret id="password" value="#{inscriptionForm.password}" required="true" />
         <h:message for="password"></h:message>
-        <h:outputText value="#{strings['client.passwordConfirmation']}" />
+        <h:outputText value="#{strings['passwordConfirmation']}" />
         <h:inputSecret id="passwordConfirmation" value="#{inscriptionForm.passwordConfirmation}" required="true" />
         <h:message for="passwordConfirmation"></h:message>
       </h:panelGrid>

@@ -2,10 +2,11 @@
   xmlns:f="http://java.sun.com/jsf/core" xmlns:h="http://java.sun.com/jsf/html">
   <h:graphicImage name="logo.png" library="images" alt="" width="179" height="76" />
   <div style="float: right;"> 
+  	<div>Back-Office</div>
     <h:form id="topForm">
-      <h:panelGroup rendered="#{clientController.loggedIn}">
-        #{currentClient.login}
-        <h:commandLink action="#{clientController.doLogout}" value="Se déconnecter" />
+      <h:panelGroup rendered="#{adminController.loggedIn}">
+        #{currentAdmin.login}
+        <h:commandLink action="#{adminController.doLogout}" value="Se déconnecter" />
       </h:panelGroup>
     </h:form>
   </div>
