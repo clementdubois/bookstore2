@@ -21,6 +21,7 @@ import beans.LoginForm;
 @SessionScoped
 public class ClientController implements Serializable {
 
+	
 	private static final long serialVersionUID = 1L;
 	private static Logger log = LoggerFactory.getLogger(ClientController.class);
 	@Inject

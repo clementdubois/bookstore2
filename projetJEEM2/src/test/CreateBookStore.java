@@ -22,7 +22,7 @@ public class CreateBookStore {
 
     Map<String, String> properties = new HashMap<String, String>();
     properties.put("eclipselink.ddl-generation", "drop-and-create-tables");
-    EntityManagerFactory emf = Persistence.createEntityManagerFactory("JEE6-JDBC", properties);
+    EntityManagerFactory emf = Persistence.createEntityManagerFactory("JEE6", properties);
     EntityManager em = emf.createEntityManager();
     em.getTransaction().begin();
 
