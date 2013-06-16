@@ -1,0 +1,19 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://java.sun.com/jsf/facelets"
+  xmlns:f="http://java.sun.com/jsf/core" xmlns:h="http://java.sun.com/jsf/html" template="../template.xhtml">
+  <ui:define name="content">
+	   <h:form id="contentForm">
+	   		<h:panelGrid columns="3">
+		       	<h:outputText value="#{strings['title']}" />
+		       	<h:inputText id="title" value="#{bookForm.title}" required="true" />
+		       	<h:message for="title"></h:message>
+		       	<h:outputText value="#{strings['category']}" />
+		       	<h:inputText id="category" value="#{bookForm.category}" required="true" />
+		       	<h:message for="category"></h:message>
+		       	<h:outputText value="#{strings['price']}" />
+		       	<h:inputText id="price" value="#{bookForm.price}" required="true" />
+		       	<h:message for="price"></h:message>
+		    </h:panelGrid>
+   			<h:commandButton action="#{bookController.addBook}" value="#{strings['add']}"/>
+    </h:form>
+  </ui:define>
+</ui:composition>

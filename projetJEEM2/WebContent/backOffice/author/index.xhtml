@@ -1,0 +1,18 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://java.sun.com/jsf/facelets"
+  xmlns:f="http://java.sun.com/jsf/core" xmlns:h="http://java.sun.com/jsf/html" template="../template.xhtml">
+  <ui:define name="content">
+    <h:form id="authorForm">
+         	<h:dataTable value="#{authorController.authors}" var="author">
+	  		<f:facet name="header">#{strings['authors']}</f:facet>
+	  		<h:column>
+				<h:commandLink action="#{authorController.editAuthor(author)}" value="#{author.getFirstName()} #{author.getLastName()}" />
+			</h:column>
+			<h:column>
+				<h:commandLink action="#{authorController.deleteAuthor(author.id)}" onclick="if (!confirm(\'#{strings['confirm.delete']}\')) return false;" 
+				value="Supprimer" />
+			</h:column>
+	  	</h:dataTable>
+      	<h:commandLink action="./add.jsf" value="#{strings['add']}"/>
+    </h:form>
+  </ui:define>
+</ui:composition>
