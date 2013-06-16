@@ -1,4 +1,3 @@
-
 package ejb;
 
 import java.lang.reflect.ParameterizedType;
@@ -43,7 +42,7 @@ public class GenericCRUDServiceEJB<T> implements GenericCRUDService<T>{
  }
   
   public List findAll(){
-    return  em.createQuery("select t from " + entityClass.getName() + "t").getResultList();
+    return em.createQuery("select t from " + entityClass.getSimpleName() + " t").getResultList();
   }
 
   public List findWithNamedQuery(String namedQueryName) {
