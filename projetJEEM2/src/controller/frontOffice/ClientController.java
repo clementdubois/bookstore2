@@ -14,8 +14,12 @@ import org.slf4j.LoggerFactory;
 
 import ejb.ClientService;
 import entities.Client;
+import exceptions.inscription.LoginUsedException;
+import exceptions.inscription.UnconfirmedPasswordException;
+import exceptions.login.ClientNotFoundException;
 
 import annotations.LoggedIn;
+import beans.InscriptionForm;
 import beans.LoginForm;
 import beans.MessageBean;
 
@@ -26,6 +30,8 @@ public class ClientController implements Serializable {
 	private Logger log; //= LoggerFactory.getLogger(ClientController.class);
 	@Inject
 	private LoginForm loginForm;
+	@Inject
+	private InscriptionForm inscriptionForm;
 	@Inject
 	private MessageBean messageBean;
 	@EJB
@@ -41,8 +47,13 @@ public class ClientController implements Serializable {
 	}
 	
 	public String doLogin() {
-		currentClient = clientService.login(loginForm.getLogin(),
-				loginForm.getPassword());
+		try {
+			currentClient = clientService.login(loginForm.getLogin(),
+					loginForm.getPassword());
+		} catch (ClientNotFoundException e) {
+			messageBean.addMessage("clientNotFound");
+		}
+
 		return "login";
 	}
 	
@@ -53,5 +64,20 @@ public class ClientController implements Serializable {
 	public String doLogout() {
 		currentClient = null;
 		return "login";
+	}
+	
+	public String doInscription(){
+		try {
+			clientService.inscription(inscriptionForm.getLogin(), inscriptionForm.getPassword(), inscriptionForm.getPasswordConfirmation());
+			return "login";
+		} catch (LoginUsedException e) {
+			messageBean.addMessage("clientAlreadyExists");
+			return "inscription";
+			
+		} catch (UnconfirmedPasswordException e) {
+			messageBean.addMessage("passwordsDoesntMatch");
+			return "inscription";
+		}
+
 	}
 }

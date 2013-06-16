@@ -13,10 +13,14 @@
   </h:head>
   <h:body>
     <div id="top">
-      <ui:insert name="top" />
+      <ui:insert name="top">
+      	<ui:include src="top.xhtml"/>
+      </ui:insert>
     </div>
     <div id="left">
-      <ui:insert name="left" />
+      <ui:insert name="left">
+      	<ui:include src="left.xhtml"></ui:include>
+      </ui:insert>
     </div>
     <div id="content">
       <ui:insert name="content" />
