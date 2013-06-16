@@ -1,5 +1,13 @@
 <ui:composition xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://java.sun.com/jsf/facelets"
   xmlns:f="http://java.sun.com/jsf/core" xmlns:h="http://java.sun.com/jsf/html">
-  <div style="float: right;">
+  <div id="categories" style="float: right;">
+   	<h:form id="categoryForm">
+  		<h:dataTable value="#{categoryFrontController.categoriesBook}" var="category">
+	  		<f:facet name="header">#{strings['categories']}</f:facet>
+	  		<h:column>
+				<h:commandLink action="#{bookFrontController.show(category)}" value="#{category.getTitle()}" />
+			</h:column>
+	  	</h:dataTable>
+	</h:form>
   </div>
 </ui:composition>
