@@ -1,0 +1,20 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://java.sun.com/jsf/facelets"
+  xmlns:f="http://java.sun.com/jsf/core" xmlns:h="http://java.sun.com/jsf/html" template="template.xhtml">
+  <ui:define name="content">
+    <h:form id="contentForm">
+   	  <h:messages globalOnly="true"/>
+      <h:panelGrid columns="3">
+        <h:outputText value="#{strings['login']}" />
+        <h:inputText id="login" value="#{inscriptionForm.login}" required="true"/>
+        <h:message for="login"></h:message>
+        <h:outputText value="#{strings['password']}" />
+        <h:inputSecret id="password" value="#{inscriptionForm.password}" required="true" />
+        <h:message for="password"></h:message>
+        <h:outputText value="#{strings['passwordConfirmation']}" />
+        <h:inputSecret id="passwordConfirmation" value="#{inscriptionForm.passwordConfirmation}" required="true" />
+        <h:message for="passwordConfirmation"></h:message>
+      </h:panelGrid>
+      <h:commandButton action="#{clientController.doInscription}" value="#{strings['button.login']}"/>
+    </h:form>
+  </ui:define>
+</ui:composition>

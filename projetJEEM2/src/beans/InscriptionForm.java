@@ -9,9 +9,10 @@ import org.hibernate.validator.constraints.Length;
 
 @Named
 @RequestScoped
-public class LoginForm {
+public class InscriptionForm {
   private String login;
   private String password;
+  private String passwordConfirmation;
 
   @NotNull
   @Length(min = 3, max = 25)
@@ -29,6 +30,15 @@ public class LoginForm {
   public void setPassword(String password) {
     this.password = password;
   }
+  
+	public String getPasswordConfirmation() {
+		return passwordConfirmation;
+	}
+	public void setPasswordConfirmation(String passwordConfirmation) {
+		this.passwordConfirmation = passwordConfirmation;
+	}
+  
+  
   
   
 }
