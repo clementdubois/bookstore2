@@ -2,10 +2,13 @@
   xmlns:f="http://java.sun.com/jsf/core" xmlns:h="http://java.sun.com/jsf/html" template="../template.xhtml">
   <ui:define name="content">
     <h:form id="bookForm">
-         	<h:dataTable value="#{bookFrontController.books}" var="book">
+    	<h:dataTable value="#{bookFrontController.books}" var="book">
 	  		<f:facet name="header">#{strings['books']}</f:facet>
 	  		<h:column>
 				<h:commandLink action="#{bookFrontController.showBook(book)}" value="#{book.getTitle()}" />
+			</h:column>
+			<h:column>
+				<h:commandLink action="#{panierBean.addBook(book)}" value="Ajouter au panier" />
 			</h:column>
 	  	</h:dataTable>
     </h:form>

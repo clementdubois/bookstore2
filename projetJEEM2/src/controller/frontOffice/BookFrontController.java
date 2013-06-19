@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.List;
 
 import javax.ejb.EJB;
+import javax.enterprise.context.RequestScoped;
 import javax.enterprise.context.SessionScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -15,7 +16,7 @@ import entities.Book;
 import entities.Category;
 
 @Named
-@SessionScoped
+@RequestScoped
 public class BookFrontController implements Serializable {
 	@Inject
 	private Logger log;
@@ -29,13 +30,8 @@ public class BookFrontController implements Serializable {
 	
 	public String index(Category c){
 		if(c != null){
-			System.out.println(c.getTitle());
 			books = c.getBooks();
-			for(Book b : books){
-				System.out.println(b.getTitle());
-			}
 		}else{
-			System.out.println("pas categori");
 			books = (List<Book>) bookService.findAll();
 		}
 		return "/frontOffice/books/index";
@@ -46,8 +42,6 @@ public class BookFrontController implements Serializable {
 		return "/frontOffice/books/show";
 	}
 	
-	
-
 	public List<Book> getBooks() {
 		return books;
 	}
