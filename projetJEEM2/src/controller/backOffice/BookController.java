@@ -6,6 +6,7 @@ import java.util.List;
 import javax.ejb.EJB;
 import javax.enterprise.context.SessionScoped;
 import javax.enterprise.inject.Produces;
+import javax.faces.event.ValueChangeEvent;
 import javax.inject.Inject;
 import javax.inject.Named;
 
@@ -14,8 +15,11 @@ import org.slf4j.Logger;
 import annotations.Books;
 import beans.BookForm;
 import beans.MessageBean;
+import ejb.AuthorService;
 import ejb.BookService;
+import ejb.CategoryService;
 import entities.Book;
+import entities.Category;
 
 @Named
 @SessionScoped
@@ -28,8 +32,23 @@ public class BookController implements Serializable {
 	private MessageBean messageBean;
 	@EJB
 	private BookService bookService;
+	@EJB
+	private CategoryService categoryService;
+	@EJB
+	private AuthorService authorService;
 	
 	private Book book;
+	
+	public Category getSelectedCategory() {
+		return selectedCategory;
+	}
+
+	public void setSelectedCategory(Category selectedCategory) {
+		this.selectedCategory = selectedCategory;
+	}
+
+	private Long selectedId;
+	private Category selectedCategory;
 	
 	@Produces
 	@Named
@@ -39,11 +58,11 @@ public class BookController implements Serializable {
 	}
 	
 	public String addBook(){
-		Book b = new Book();
-		b.setTitle(bookForm.getTitle());
-		b.setCategory(bookForm.getCategory());
+		Book book = new Book();
+		book.setTitle(bookForm.getTitle());
+		book.setCategory(bookForm.getCategory());
 		book.setPrice(bookForm.getPrice());
-		bookService.create(b);
+		bookService.create(book);
 		return "/backOffice/book/index";
 	}
 	
@@ -55,7 +74,9 @@ public class BookController implements Serializable {
 	public String editBook(Book b){
 		bookForm.setTitle(b.getTitle());
 		bookForm.setCategory(b.getCategory());
-		book.setPrice(bookForm.getPrice());
+		bookForm.setPrice(b.getPrice());
+		selectedCategory = b.getCategory();
+		selectedId = selectedCategory.getId();
 		book = b;
 		return "/backOffice/book/edit";
 	}
@@ -71,4 +92,21 @@ public class BookController implements Serializable {
 		book = null;
 		return "/backOffice/book/index";
 	}//*/
+	
+	public Long getSelectedId() {
+		return selectedId;
+	}
+
+	public void setSelectedId(Long selectedId) {
+		this.selectedId = selectedId;
+	}
+	
+	public void selectIdChanged(ValueChangeEvent e){
+		selectedId = (Long) e.getNewValue();
+		if(selectedId!=null)
+			selectedCategory = (Category) categoryService.find(selectedId);
+		else
+			selectedCategory = null;
+	}
+	
 }

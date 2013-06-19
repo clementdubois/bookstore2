@@ -7,7 +7,7 @@
 		       	<h:inputText id="title" value="#{categoryForm.title}" required="true" />
 		       	<h:message for="title"></h:message>
 		    </h:panelGrid>
-   			<h:commandButton action="#{categoryController.updateCategory(category)}" value="#{strings['edit']}"/>
+   			<h:commandButton action="#{categoryController.updateCategory(selectedCategory)}" value="#{strings['edit']}"/>
     </h:form>
   </ui:define>
 </ui:composition>

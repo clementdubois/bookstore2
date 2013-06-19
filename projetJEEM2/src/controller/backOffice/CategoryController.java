@@ -7,6 +7,7 @@ import java.util.List;
 import javax.ejb.EJB;
 import javax.enterprise.context.SessionScoped;
 import javax.enterprise.inject.Produces;
+import javax.faces.event.ValueChangeEvent;
 import javax.inject.Inject;
 import javax.inject.Named;
 import javax.persistence.EntityManager;
@@ -35,7 +36,7 @@ public class CategoryController implements Serializable {
 	@EJB
 	private CategoryService categoryService;
 	
-	private Category category;
+	private Category selectedCategory;
 	
 	@Produces
 	@Named
@@ -58,14 +59,14 @@ public class CategoryController implements Serializable {
 	
 	public String editCategory(Category c){
 		categoryForm.setTitle(c.getTitle());
-		category = c;
+		selectedCategory = c;
 		return "/backOffice/category/edit";
 	}
 	//*
 	public String updateCategory(Long categoryId){
-		category.setTitle(categoryForm.getTitle());
-		categoryService.update(category);
-		category = null;
+		selectedCategory.setTitle(categoryForm.getTitle());
+		categoryService.update(selectedCategory);
+		selectedCategory = null;
 		return "/backOffice/category/index";
 	}//*/
 }

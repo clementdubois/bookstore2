@@ -3,14 +3,20 @@
   <ui:define name="content">
 	   <h:form id="contentForm">
 	   		<h:panelGrid columns="3">
-		       	<h:outputText value="#{strings['firstName']}" />
-		       	<h:inputText id="firstName" value="#{authorForm.firstName}" required="true" />
-		       	<h:message for="firstName"></h:message>
-		       	<h:outputText value="#{strings['lastName']}" />
-		       	<h:inputText id="lastName" value="#{authorForm.lastName}" required="true" />
-		       	<h:message for="lastName"></h:message>
+		       	<h:outputText value="#{strings['title']}" />
+		       	<h:inputText id="title" value="#{bookForm.title}" required="true" />
+		       	<h:message for="title"></h:message>
+		       	<h:outputText value="#{strings['category']}" />
+		       	<h:selectOneMenu value="#{bookController.selectedId}" valueChangeListener="#{bookController.selectedIdChanged}">
+		       		<f:selectItem noSelectionoption="true" itemLabel="#{strings['list.choose']}" />
+		       		<f:selectItems value="#{categoryController.categories}" var="category" itemlabel="#{category.title}" itemValue="#{category.id}" />
+		       	</h:selectOneMenu>
+		       	<h:message for="category"></h:message>
+		       	<h:outputText value="#{strings['price']}" />
+		       	<h:inputText id="price" value="#{bookForm.price}" required="true" />
+		       	<h:message for="price"></h:message>
 		    </h:panelGrid>
-   			<h:commandButton action="#{authorController.updateAuthor(author)}" value="#{strings['edit']}"/>
+   			<h:commandButton action="#{bookController.updateBook(book)}" value="#{strings['edit']}"/>
     </h:form>
   </ui:define>
 </ui:composition>

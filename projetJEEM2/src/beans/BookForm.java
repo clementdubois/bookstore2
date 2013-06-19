@@ -23,10 +23,10 @@ import entities.Category;
 @Named
 @RequestScoped
 public class BookForm {
-	private String title = "";
+	private String title;
 	private Category category;
-	private java.math.BigDecimal price = new BigDecimal(0);;
-	private java.util.Date date = new Date();
+	private java.math.BigDecimal price;
+	private java.util.Date date;
 	private List<Author> authors;
 	private byte[] photo;
   

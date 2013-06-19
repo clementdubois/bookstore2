@@ -20,6 +20,4 @@
 		</resource-bundle>
 		<message-bundle>resources.messages</message-bundle>
 	</application>
-
 </faces-config>
-
