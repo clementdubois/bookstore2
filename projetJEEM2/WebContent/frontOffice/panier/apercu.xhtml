@@ -20,6 +20,13 @@
 				<h:outputText value="#{itemOrder.total}" />
 			</h:column>
 	  	</h:dataTable>
+	  	<h:form id="validerPanierForm">
+		  	<h:panelGroup>
+				<div class="widget-title">
+					<h:commandLink action="#{panierBean.validerPanier()}" value="#{strings['panier.valider']}"/>
+				</div>
+			</h:panelGroup>
+		</h:form>
 
 		<div class="clearer"></div>
 	</div>
