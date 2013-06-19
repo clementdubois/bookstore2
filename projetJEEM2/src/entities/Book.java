@@ -36,7 +36,6 @@ public class Book extends Persistent {
 
   public Book() {
     authors = new ArrayList();
-
   }
 
   public boolean equals(Object other) {

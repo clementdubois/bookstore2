@@ -93,13 +93,21 @@ public class Order extends Persistent{
 
    
    public void addOne(Book book) {
+	   System.out.println("1");
      OrderItem found = find(book);
+     System.out.println("2");
      if (found == null) {
+    	 System.out.println("null");
          addItem(new OrderItem(book, 1));
+         System.out.println("null 2");
      } else {
+    	 System.out.println("else");
          found.addOne();
+         System.out.println("else2");
      }
+     System.out.println("3");
      computeTotal();
+     System.out.println("4");
  }
 
  public void removeOne(Book book) {
