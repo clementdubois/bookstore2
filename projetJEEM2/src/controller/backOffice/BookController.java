@@ -15,6 +15,7 @@ import org.slf4j.Logger;
 import annotations.Books;
 import beans.BookForm;
 import beans.MessageBean;
+import ejb.AuthorService;
 import ejb.BookService;
 import ejb.CategoryService;
 import entities.Book;
@@ -33,6 +34,8 @@ public class BookController implements Serializable {
 	private BookService bookService;
 	@EJB
 	private CategoryService categoryService;
+	@EJB
+	private AuthorService authorService;
 	
 	private Book book;
 	
@@ -57,7 +60,7 @@ public class BookController implements Serializable {
 	public String addBook(){
 		Book book = new Book();
 		book.setTitle(bookForm.getTitle());
-		book.setCategory(selectedCategory);
+		book.setCategory(bookForm.getCategory());
 		book.setPrice(bookForm.getPrice());
 		bookService.create(book);
 		return "/backOffice/book/index";

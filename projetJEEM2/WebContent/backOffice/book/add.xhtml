@@ -7,10 +7,9 @@
 		       	<h:inputText id="title" value="#{bookForm.title}" required="true" />
 		       	<h:message for="title"></h:message>
 		       	<h:outputText value="#{strings['category']}" />
-		       	<h:selectOneMenu value="#{bookController.selectedId}" valueChangeListener="#{bookController.selectedIdChanged}">
-		       		<f:selectItem noSelectionoption="true" itemLabel="#{strings['list.choose']}" />
-		       		<f:selectItems value="#{categoryController.categories}" var="category" itemlabel="#{category.title}" itemValue="#{category.id}" />
-		       	</h:selectOneMenu>
+		       	<h:selectOneMenu id="category" converter="#{categoryConverterBean}" value="#{bookForm.category}" title="Category" >
+            <f:selectItems value="#{categoryController.categories}" var="category" itemlabel="#{category.title}" itemValue="#{category}" />
+        </h:selectOneMenu>
 		       	<h:message for="category"></h:message>
 		       	<h:outputText value="#{strings['price']}" />
 		       	<h:inputText id="price" value="#{bookForm.price}" required="true" />
