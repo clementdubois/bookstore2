@@ -8,6 +8,9 @@
 				<h:commandLink action="#{bookFrontController.showBook(book)}" value="#{book.getTitle()}" />
 			</h:column>
 			<h:column>
+				<h:graphicImage name="#{book.photo}" library="images" width="50" height="50"/>
+			</h:column>
+			<h:column>
 				<h:commandLink action="#{panierBean.addBook(book)}" value="Ajouter au panier" />
 			</h:column>
 	  	</h:dataTable>

@@ -31,7 +31,7 @@ public class Book extends Persistent {
   private java.math.BigDecimal price = new BigDecimal(0);;
   private java.util.Date date = new Date();
   private List<Author> authors;
-  private byte[] photo;
+  private String photo;
   private List<OrderItem> orderItems = new ArrayList();;
 
   public Book() {
@@ -109,11 +109,11 @@ public class Book extends Persistent {
   @Lob
   @Column(length = 100000)
   // La taille de la colonne est nécessaire pour Derby
-  public byte[] getPhoto() {
+  public String getPhoto() {
     return this.photo;
   }
 
-  public void setPhoto(byte[] photo) {
+  public void setPhoto(String photo) {
     this.photo = photo;
   }
 
