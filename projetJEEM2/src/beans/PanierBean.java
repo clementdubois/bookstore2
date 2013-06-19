@@ -8,6 +8,8 @@ import javax.enterprise.context.SessionScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 
+import org.primefaces.event.DragDropEvent;
+
 import controller.frontOffice.ClientController;
 
 import ejb.OrderService;
@@ -42,6 +44,14 @@ public class PanierBean implements Serializable{
 		panier.setClient(clientController.getCurrentClient());
 		panierService.create(panier);
 		panier = new Order();
+	}
+	
+	public void dropBook(DragDropEvent ddEvent){
+		System.out.println(ddEvent.getData().toString());
+		Book book = (Book) ddEvent.getData();
+		System.out.println(book.getTitle());
+		System.out.println(book.getId());
+		addBook(book);
 	}
 
 	public Order getPanier() {

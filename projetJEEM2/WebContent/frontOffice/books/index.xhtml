@@ -1,19 +1,36 @@
-<ui:composition xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://java.sun.com/jsf/facelets"
-  xmlns:f="http://java.sun.com/jsf/core" xmlns:h="http://java.sun.com/jsf/html" template="../template.xhtml">
-  <ui:define name="content">
-    <h:form id="bookForm">
-    	<h:dataTable value="#{bookFrontController.books}" var="book">
-	  		<f:facet name="header">#{strings['books']}</f:facet>
-	  		<h:column>
-				<h:commandLink action="#{bookFrontController.showBook(book)}" value="#{book.getTitle()}" />
-			</h:column>
-			<h:column>
-				<h:graphicImage name="#{book.photo}" library="images" width="50" height="50"/>
-			</h:column>
-			<h:column>
-				<h:commandLink action="#{panierBean.addBook(book)}" value="Ajouter au panier" />
-			</h:column>
-	  	</h:dataTable>
-    </h:form>
-  </ui:define>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui" template="../template.xhtml">
+	<ui:define name="content">
+		<h:form id="bookListForm">
+			<p:dataGrid value="#{bookFrontController.books}" var="book"
+				column="6" id="bookList">
+				<p:column>
+					<p:panel id="infoBook" header="#{book.getTitle()}"
+						style="text-align:center">
+						<h:panelGrid columns="1" style="width:80%">
+							<h:graphicImage name="#{book.photo}" library="images" width="50"
+								height="50" />
+							<h:form id="bookForm">
+								<h:commandLink action="#{bookFrontController.showBook(book)}"
+									value="#{book.getTitle()}" />
+								<h:commandLink action="#{panierBean.addBook(book)}"
+									value="Ajouter au panier" />
+							</h:form>
+						</h:panelGrid>
+
+					</p:panel>
+
+					<p:draggable for="infoBook" revert="true"
+						handle=".ui-panel-titlebar" stack=".ui-panel" />
+
+				</p:column>
+			</p:dataGrid>
+			 <p:droppable for=":panierForm:panier" datasource=":bookListForm:bookList" activeStyleClass="ui-state-highlight">  
+        		<p:ajax listener="#{panierBean.dropBook}" update=":bookListForm:bookList :panierForm:dropArea" />  
+    		</p:droppable>  
+		</h:form>
+	</ui:define>
 </ui:composition>
