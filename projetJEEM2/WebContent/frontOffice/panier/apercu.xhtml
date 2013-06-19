@@ -22,7 +22,8 @@
 				</h:column>
 				<h:column>
 					<f:facet name="header">#{strings['panier.action']}</f:facet>
-					<h:commandButton action="#{panierBean.enleverBook(itemOrder.getBook())}" image="/resources/images/delete.gif" />
+					<h:commandButton action="#{panierBean.enleverBook(itemOrder.getBook())}" image="/resources/images/moins.png" styleClass="moins" />
+					<h:commandButton action="#{panierBean.addBook(itemOrder.getBook())}" image="/resources/images/plus.jpeg" styleClass="plus" />
 				</h:column>
 		  	</h:dataTable>
 		  	<h:panelGroup rendered="#{panierBean.panier.size >0}">
