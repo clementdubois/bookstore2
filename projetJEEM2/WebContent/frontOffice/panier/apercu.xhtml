@@ -1,33 +1,42 @@
-<ui:composition xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://java.sun.com/jsf/facelets"
-  xmlns:f="http://java.sun.com/jsf/core" xmlns:h="http://java.sun.com/jsf/html">
-	<div class="widget-panier" id="panier-widget">
-		<h:panelGroup>
-			<div class="widget-title">
-				<h:outputText value="#{strings['panier.titre']}" />
-			</div>
-		</h:panelGroup>
-		<h:dataTable value="#{panierBean.panier.items}" var="itemOrder">
-	  		<h:column>
-	  			<f:facet name="header">#{strings['panier.books']}</f:facet>
-				<h:outputText value="#{itemOrder.book.title}" />
-			</h:column>
-			<h:column>
-				<f:facet name="header">#{strings['panier.quantity']}</f:facet>
-				<h:outputText value="#{itemOrder.quantity}" />
-			</h:column>
-			<h:column>
-				<f:facet name="header">#{strings['panier.total']}</f:facet>
-				<h:outputText value="#{itemOrder.total}" />
-			</h:column>
-	  	</h:dataTable>
-	  	<h:form id="validerPanierForm">
-		  	<h:panelGroup>
-				<div class="widget-title">
-					<h:commandLink action="#{panierBean.validerPanier()}" value="#{strings['panier.valider']}"/>
-				</div>
-			</h:panelGroup>
-		</h:form>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+<h:form id="panierForm">
+		<p:fieldset id="panier" legend="strings['panier.titre']"
+			style="margin-top:20px">
+			<p:outputPanel id="dropArea">
 
-		<div class="clearer"></div>
-	</div>
+				<h:outputText value="#{strings['panier.estVide']}"
+					rendered="#{empty panierBean.panier.items}" style="font-size:24px;" />
+				<h:dataTable value="#{panierBean.panier.items}" var="itemOrder"
+					rendered="#{not empty panierBean.panier.items}">
+					<p:column headerText="#{strings['panier.books']}">
+						<h:outputText value="#{itemOrder.book.title}" />
+					</p:column>
+					<p:column headerText="#{strings['panier.quantity']}">
+						<h:outputText value="#{itemOrder.quantity}" />
+					</p:column>
+					<p:column headerText="#{strings['panier.total']}">
+						<h:outputText value="#{itemOrder.total}" />
+					</p:column>
+					<p:column headerText="#{strings['panier.action']}">
+							<h:commandButton
+								action="#{panierBean.enleverBook(itemOrder.getBook())}"
+								image="/resources/images/moins.png" styleClass="moins" />
+							<h:commandButton
+								action="#{panierBean.addBook(itemOrder.getBook())}"
+								image="/resources/images/plus.jpeg" styleClass="plus" />
+					</p:column>
+				</h:dataTable>
+				<h:panelGroup rendered="#{panierBean.panier.size >0}">
+					<div class="widget-title">
+						<h:commandLink action="#{panierBean.validerPanier()}"
+							value="#{strings['panier.valider']}" />
+					</div>
+				</h:panelGroup>
+			</p:outputPanel>
+		</p:fieldset>
+    	</h:form>
 </ui:composition>

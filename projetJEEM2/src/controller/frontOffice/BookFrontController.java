@@ -18,6 +18,7 @@ import entities.Category;
 @Named
 @RequestScoped
 public class BookFrontController implements Serializable {
+	
 	@Inject
 	private Logger log;
 	@EJB

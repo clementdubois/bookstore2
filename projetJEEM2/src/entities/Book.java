@@ -5,7 +5,9 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.Lob;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
@@ -29,12 +31,11 @@ public class Book extends Persistent {
   private java.math.BigDecimal price = new BigDecimal(0);;
   private java.util.Date date = new Date();
   private List<Author> authors;
-  private String photo;
+  private byte[] photo;
   private List<OrderItem> orderItems = new ArrayList();;
 
   public Book() {
     authors = new ArrayList();
-
   }
 
   public boolean equals(Object other) {
@@ -105,11 +106,14 @@ public class Book extends Persistent {
     authors.remove(author);
   }
 
-  public String getPhoto() {
+  @Lob
+  @Column(length = 100000)
+  // La taille de la colonne est nécessaire pour Derby
+  public byte[] getPhoto() {
     return this.photo;
   }
 
-  public void setPhoto(String photo) {
+  public void setPhoto(byte[] photo) {
     this.photo = photo;
   }
 
