@@ -11,6 +11,7 @@ import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
@@ -36,8 +37,9 @@ public class Order extends Persistent{
     return date;
   }
   public void setDate(Date date) {
-    this.date = date;
+	  this.date = date;
   }
+
   @ManyToOne
   public Client getClient() {
     return client;

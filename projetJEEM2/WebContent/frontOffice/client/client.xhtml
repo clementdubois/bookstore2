@@ -1,0 +1,20 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://java.sun.com/jsf/facelets"
+  xmlns:f="http://java.sun.com/jsf/core" xmlns:h="http://java.sun.com/jsf/html" template="../template.xhtml">
+  <ui:define name="content">
+    <h:form id="contentForm">
+   	  <h:messages globalOnly="true"/>
+      <h:panelGrid columns="2">
+        <f:facet name="header">#{strings['orders']}</f:facet>
+        <h:dataTable value="#{currentClient.commandes}" var="commande">
+	  		<h:column>
+				<h:commandLink action="#{clientController.detailCommande(commande)}" value="#{strings['order']} num. #{commande.id}" />
+			</h:column>
+	  	</h:dataTable>
+      </h:panelGrid>
+      <h:panelGrid columns="2">
+        <f:facet name="header">#{strings['login']}</f:facet>
+        <h:outputText value="#{currentClient.login}" />
+      </h:panelGrid>
+    </h:form>
+  </ui:define>
+</ui:composition>

@@ -14,6 +14,7 @@ import org.slf4j.LoggerFactory;
 
 import ejb.ClientService;
 import entities.Client;
+import entities.Order;
 import exceptions.inscription.LoginUsedException;
 import exceptions.inscription.UnconfirmedPasswordException;
 import exceptions.login.ClientNotFoundException;
@@ -38,6 +39,7 @@ public class ClientController implements Serializable {
 	private ClientService clientService;
 
 	private Client currentClient;
+	private Order currentOrder;
 
 	@Produces
 	@Named
@@ -79,5 +81,21 @@ public class ClientController implements Serializable {
 			return "/frontOffice/inscription";
 		}
 
+	}
+	
+	public String detailCommande(Order order){
+		setCurrentOrder(order);
+		return "/frontOffice/client/detailCommande";
+	}
+
+	@Produces
+	@Named
+	@LoggedIn
+	public Order getCurrentOrder() {
+		return currentOrder;
+	}
+
+	public void setCurrentOrder(Order currentOrder) {
+		this.currentOrder = currentOrder;
 	}
 }

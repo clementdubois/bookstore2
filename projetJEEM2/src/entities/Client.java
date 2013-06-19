@@ -26,6 +26,7 @@ import javax.persistence.OneToMany;
 public class Client extends Persistent {
   private String login;
   private String password;
+  
   private List<Order> commandes = new ArrayList<Order>();
   
   public boolean equals(Object other){
@@ -52,7 +53,7 @@ public class Client extends Persistent {
     this.password = password;
   }
 
-  @OneToMany(mappedBy="client",cascade ={CascadeType.PERSIST, CascadeType.REMOVE})
+  @OneToMany(mappedBy="client",cascade ={CascadeType.PERSIST}) //CascadeType.REMOVE
   public List<Order> getCommandes() {
     return commandes;
   }

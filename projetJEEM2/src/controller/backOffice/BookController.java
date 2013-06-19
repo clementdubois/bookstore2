@@ -61,6 +61,7 @@ public class BookController implements Serializable {
 		Book book = new Book();
 		book.setTitle(bookForm.getTitle());
 		book.setCategory(bookForm.getCategory());
+		book.setAuthors(bookForm.getAuthors());
 		book.setPrice(bookForm.getPrice());
 		bookService.create(book);
 		return "/backOffice/book/index";

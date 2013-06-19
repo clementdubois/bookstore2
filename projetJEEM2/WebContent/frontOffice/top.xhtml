@@ -9,7 +9,8 @@
 		<h:form id="topForm2">
 			<dgc:localeChooser />
 			<h:panelGroup rendered="#{clientController.loggedIn}">
-        #{currentClient.login}
+        <h:commandLink action="/frontOffice/client/client.jsf"
+					value="#{currentClient.login}" />
         <h:commandLink action="#{clientController.doLogout}"
 					value="Se déconnecter" />
 			</h:panelGroup>
