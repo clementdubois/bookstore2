@@ -13,6 +13,7 @@ import controller.frontOffice.ClientController;
 import ejb.OrderService;
 import entities.Book;
 import entities.Order;
+import entities.OrderItem;
 
 @Named
 @SessionScoped
@@ -29,6 +30,11 @@ public class PanierBean implements Serializable{
 	
 	public void addBook(Book b){
 		panier.addOne(b);
+	}
+	
+	public void enleverBook(Book b){
+		System.out.println("entrer");
+		panier.removeOne(b);
 	}
 	
 	public void validerPanier(){
