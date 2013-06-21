@@ -2,16 +2,25 @@
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:h="http://java.sun.com/jsf/html"
-	xmlns:dgc="http://java.sun.com/jsf/composite/composants">
-	<h:graphicImage name="logo.png" library="images" alt="" width="179"
-		height="76" />
-	<div style="float: right;">
+	xmlns:dgc="http://java.sun.com/jsf/composite/composants"
+	xmlns:p="http://primefaces.org/ui">
+	<div id="logo">
+		<h:graphicImage name="logo.png" library="images" alt="" width="179"
+			height="76" />
+	</div>
+	<div id="menu">
+		<h:form>
+			<p:menubar model="#{menuBean.model}" />
+		</h:form>
+	</div>
+	<div id="connection">
+	</div>
 		<h:form id="topForm2">
 			<dgc:localeChooser />
 			<h:panelGroup rendered="#{clientController.loggedIn}">
-        <h:commandLink action="/frontOffice/client/client.jsf"
+				<h:commandLink action="/frontOffice/client/client.jsf"
 					value="#{currentClient.login}" />
-        <h:commandLink action="#{clientController.doLogout}"
+				<h:commandLink action="#{clientController.doLogout}"
 					value="Se déconnecter" />
 			</h:panelGroup>
 			<h:panelGroup rendered="#{!clientController.loggedIn}">
@@ -22,5 +31,4 @@
 			</h:panelGroup>
 		</h:form>
 
-	</div>
 </ui:composition>

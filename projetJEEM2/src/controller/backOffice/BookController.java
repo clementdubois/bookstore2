@@ -53,7 +53,7 @@ public class BookController implements Serializable {
 	@Produces
 	@Named
 	@Books
-	public List getBooks(){
+	public List<Book> getBooks(){
 		return (List<Book>) bookService.findAll();
 	}
 	

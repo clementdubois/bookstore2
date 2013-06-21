@@ -3,11 +3,11 @@ package controller.frontOffice;
 import java.io.Serializable;
 
 import javax.ejb.EJB;
-import javax.enterprise.context.SessionScoped;
 import javax.enterprise.inject.Produces;
+import javax.faces.bean.ManagedBean;
+import javax.faces.bean.SessionScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
-import javax.persistence.EntityManager;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -24,8 +24,8 @@ import beans.InscriptionForm;
 import beans.LoginForm;
 import beans.MessageBean;
 
-@Named
 @SessionScoped
+@ManagedBean
 public class ClientController implements Serializable {
 	@Inject
 	private Logger log; //= LoggerFactory.getLogger(ClientController.class);
@@ -48,6 +48,12 @@ public class ClientController implements Serializable {
 		return currentClient;
 	}
 	
+	public void setCurrentClient(Client currentClient) {
+		this.currentClient = currentClient;
+	}
+
+
+
 	public String doLogin() {
 		try {
 			currentClient = clientService.login(loginForm.getLogin(),
