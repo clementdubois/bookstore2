@@ -5,8 +5,7 @@
 	xmlns:dgc="http://java.sun.com/jsf/composite/composants"
 	xmlns:p="http://primefaces.org/ui">
 	<div id="logo">
-		<h:graphicImage name="logo.png" library="images" alt="" width="179"
-			height="76" />
+		<h:graphicImage name="logo.png" library="images" alt="" />
 	</div>
 	<div id="menu">
 		<h:form>
@@ -14,7 +13,6 @@
 		</h:form>
 	</div>
 	<div id="connection">
-	</div>
 		<h:form id="topForm2">
 			<dgc:localeChooser />
 			<h:panelGroup rendered="#{clientController.loggedIn}">
@@ -30,5 +28,5 @@
 					value="S'inscrire" />
 			</h:panelGroup>
 		</h:form>
-
+	</div>
 </ui:composition>
