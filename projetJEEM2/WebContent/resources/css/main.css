@@ -1,11 +1,13 @@
 /*Toolbar*/
-
+.navbar-fixed-top{
+	position:relative !important;
+}
 
 
 /*Panier*/
 .moins, .plus{
-	width:20px;
-	height:20px;
+	width:20px !important;
+	height:20px !important;
 }
 #cart_block{
 	width:300px;
@@ -86,15 +88,15 @@ a, a:visited, a:active, a:link, a:focus {
 #cart_block .remove_link {
   height: 24px;
   position: absolute;
-  right: 7px;
-  top: 15px;
+  right: 12px;
+  top: 10px;
   width: 19px;
 }
 #cart_block .add_link {
   height: 24px;
   position: absolute;
   right: 7px;
-  top: 30px;
+  top: 40px;
   width: 19px;
 }
 a.product_link {

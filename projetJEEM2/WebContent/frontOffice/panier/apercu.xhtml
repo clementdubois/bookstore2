@@ -20,19 +20,23 @@
 							<p:commandLink styleClass="cart_block_product_name product_link"
 								action="#{bookFrontController.showBook(itemOrder.book)}"
 								value="#{itemOrder.book.getTitle()}" />
-							<span class="remove_link"> 
-								<p:commandButton
-									actionListener="#{panierBean.enleverBook(itemOrder.getBook())}"
+							<div class="remove_link"> 
+								<p:commandLink actionListener="#{panierBean.enleverBook(itemOrder.getBook())}"
 									update=":form_panier:panier_list"
-									image="/resources/images/moins.png"
-									styleClass="ajax_cart_block_remove_link moins" />
-							</span> 
-							<span class="add_link"> 
-								<h:commandButton
-									action="#{panierBean.addBook(itemOrder.getBook())}"
-									image="/resources/images/plus.jpeg"
-									styleClass="ajax_cart_block_remove_link moins" />
-							</span> 
+									image="moins"
+									styleClass="ajax_cart_block_remove_link" >
+								    <h:graphicImage name="images/moins.png" styleClass="moins"/>
+								</p:commandLink> 
+								
+							</div> 
+							<div class="add_link">
+								<p:commandLink actionListener="#{panierBean.addBook(itemOrder.getBook())}"
+									update=":form_panier:panier_list"
+									image="plus"
+									styleClass="ajax_cart_block_remove_link plus" >
+								    <h:graphicImage name="images/plus.jpeg" styleClass="plus"/>
+								</p:commandLink> 
+							</div> 
 							<span class="price">#{itemOrder.total}€</span>
 						</div>
 					</ui:repeat>
