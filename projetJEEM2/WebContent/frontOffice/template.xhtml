@@ -12,17 +12,13 @@
 		<h:outputStylesheet library="css" name="primeFacesSurcharge.css" />
 		<h:outputStylesheet name="bootstrap/css/bootstrap.min.css" />
 		<h:outputScript name="bootstrap/js/bootstrap.min.js"></h:outputScript>
+		<h:outputScript name="js/main.js"></h:outputScript>
 	</h:head>
 	<h:body>
 		<ui:insert name="top">
 			<ui:include src="top.xhtml" />
 		</ui:insert>
-		<div id="panier">
-			<ui:insert name="panier">
-				<ui:include src="/frontOffice/panier/apercu.xhtml" />
-			</ui:insert>
-		</div>
-		<div id="content">
+		<div class="container">
 			<ui:insert name="content" />
 		</div>
 	</h:body>

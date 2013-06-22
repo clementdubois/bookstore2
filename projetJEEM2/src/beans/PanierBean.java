@@ -31,6 +31,7 @@ public class PanierBean implements Serializable{
 	};
 	
 	public void addBook(Book b){
+		System.out.println("add boooooookkkkkk");
 		panier.addOne(b);
 	}
 	

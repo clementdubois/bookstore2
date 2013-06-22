@@ -3,40 +3,53 @@
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:p="http://primefaces.org/ui">
-<h:form id="panierForm">
-		<p:fieldset id="panier" legend="strings['panier.titre']"
-			style="margin-top:20px">
-			<p:outputPanel id="dropArea">
-
-				<h:outputText value="#{strings['panier.estVide']}"
-					rendered="#{empty panierBean.panier.items}" style="font-size:24px;" />
-				<h:dataTable value="#{panierBean.panier.items}" var="itemOrder"
-					rendered="#{not empty panierBean.panier.items}">
-					<p:column headerText="#{strings['panier.books']}">
-						<h:outputText value="#{itemOrder.book.title}" />
-					</p:column>
-					<p:column headerText="#{strings['panier.quantity']}">
-						<h:outputText value="#{itemOrder.quantity}" />
-					</p:column>
-					<p:column headerText="#{strings['panier.total']}">
-						<h:outputText value="#{itemOrder.total}" />
-					</p:column>
-					<p:column headerText="#{strings['panier.action']}">
-							<h:commandButton
-								action="#{panierBean.enleverBook(itemOrder.getBook())}"
-								image="/resources/images/moins.png" styleClass="moins" />
-							<h:commandButton
-								action="#{panierBean.addBook(itemOrder.getBook())}"
-								image="/resources/images/plus.jpeg" styleClass="plus" />
-					</p:column>
-				</h:dataTable>
-				<h:panelGroup rendered="#{panierBean.panier.size >0}">
-					<div class="widget-title">
-						<h:commandLink action="#{panierBean.validerPanier()}"
-							value="#{strings['panier.valider']}" />
+	<div id="cart_block" class="block column_box exclusive"
+		style="display: block;">
+		<div class="block_content toggle_content">
+			<p:panel id="panier_list">
+			<div id="cart_block_list" class="expanded">
+				<div class="products clearfix">
+					<ui:repeat value="#{panierBean.panier.items}" var="itemOrder">
+						<div id="livre_#{itemOrder.book.id}" class="clearfix first_item">
+							<a class="cart_image"> 
+								<h:graphicImage name="#{itemOrder.book.photo}" library="images" />
+							</a> 
+							<span class="quantity-formated"> 
+								<span class="quantity" style="opacity: 1;">#{itemOrder.quantity}</span>x
+							</span>
+							<p:commandLink styleClass="cart_block_product_name product_link"
+								action="#{bookFrontController.showBook(itemOrder.book)}"
+								value="#{itemOrder.book.getTitle()}" />
+							<span class="remove_link"> 
+								<p:commandButton
+									actionListener="#{panierBean.enleverBook(itemOrder.getBook())}"
+									update=":form_panier:panier_list"
+									image="/resources/images/moins.png"
+									styleClass="ajax_cart_block_remove_link moins" />
+							</span> 
+							<span class="add_link"> 
+								<h:commandButton
+									action="#{panierBean.addBook(itemOrder.getBook())}"
+									image="/resources/images/plus.jpeg"
+									styleClass="ajax_cart_block_remove_link moins" />
+							</span> 
+							<span class="price">#{itemOrder.total}€</span>
+						</div>
+					</ui:repeat>
+				</div>
+				<div class="cart-prices">
+					<div class="cart-prices-block">
+						<span id="cart_block_total" class="price ajax_block_cart_total">#{panierBean.panier.total}€</span>
+						<span>Total</span>
 					</div>
-				</h:panelGroup>
-			</p:outputPanel>
-		</p:fieldset>
-    	</h:form>
+				</div>
+				<p id="cart-buttons" class="clearfix">
+					<h:commandLink id="button_order_cart" styleClass="exclusive"
+						action="#{panierBean.validerPanier()}"
+						value="#{strings['panier.valider']}" />
+				</p>
+			</div>
+			</p:panel>
+		</div>
+	</div>
 </ui:composition>
