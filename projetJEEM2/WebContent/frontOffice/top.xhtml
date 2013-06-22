@@ -47,6 +47,20 @@
 										<h:commandLink action="#{clientController.doLogout}" value="Se déconnecter" />
 									</li>
 								</h:panelGroup>
+								<h:panelGroup rendered="#{!clientController.loggedIn}">
+									<li>
+										<a href="#{request.contextPath}/frontOffice/inscription.jsf">S'inscrire</a>
+									</li>
+									<li class="divider-vertical"></li>
+									<li class="dropdown" id="loginDropdown">
+										<a class="dropdown-toggle" href="#" data-toggle="dropdown">Se connecter <strong class="caret"></strong></a>
+										<div class="dropdown-menu" style="padding: 15px; padding-bottom: 0px;">
+											<ui:insert name="login">
+												<ui:include src="/frontOffice/login.xhtml" />
+											</ui:insert>
+										</div>
+									</li>
+								</h:panelGroup>
 								<h:panelGroup rendered="#{not empty panierBean.panier.items}">
 									<li class="dropdown">
 										<a class="dropdown-toggle" href="#" data-toggle="dropdown">Panier (#{panierBean.panier.size})<strong class="caret"></strong></a>
@@ -57,30 +71,11 @@
 										</div>
 									</li>
 								</h:panelGroup>
-							</ul>
-						</h:form>
-					<h:panelGroup rendered="#{!clientController.loggedIn}">
-						<h:form>
-							<ul class="nav pull-right">
-								<li>
-									<a href="#{request.contextPath}/frontOffice/inscription.jsf">S'inscrire</a>
-								</li>
-								<li class="divider-vertical"></li>
-								<li class="dropdown">
-									<a class="dropdown-toggle" href="#" data-toggle="dropdown">Se connecter <strong class="caret"></strong></a>
-									<div class="dropdown-menu" style="padding: 15px; padding-bottom: 0px;">
-										<h:outputText value="#{strings['login']}" />
-										<h:inputText id="login" value="#{loginForm.login}" required="true" />
-										<h:message for="login"></h:message>
-										<h:outputText value="#{strings['password']}" />
-										<h:inputSecret id="password" value="#{loginForm.password}" required="true" />
-										<h:message for="password"></h:message>
-										<h:commandButton action="#{clientController.doLogin}" value="#{strings['submit']}" />
-									</div>
+								<li id="localChooser">
+									<dgc:localeChooser/>
 								</li>
 							</ul>
 						</h:form>
-					</h:panelGroup>
 						
 				</div>
 				<!--/.nav-collapse -->

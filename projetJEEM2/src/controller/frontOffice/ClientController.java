@@ -54,7 +54,7 @@ public class ClientController implements Serializable {
 
 
 
-	public String doLogin() {
+	public void doLogin() {
 		try {
 			currentClient = clientService.login(loginForm.getLogin(),
 					loginForm.getPassword());
@@ -62,7 +62,6 @@ public class ClientController implements Serializable {
 			messageBean.addMessage("clientNotFound");
 		}
 
-		return "/frontOffice/login";
 	}
 	
 	public boolean isLoggedIn() {
@@ -71,7 +70,7 @@ public class ClientController implements Serializable {
 
 	public String doLogout() {
 		currentClient = null;
-		return "/frontOffice/login";
+		return "/frontOffice/home";
 	}
 	
 	public String doInscription(){

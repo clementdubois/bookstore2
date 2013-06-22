@@ -10,6 +10,9 @@ $(function() {
   
 });
 
-function vertPanier(){
-	
+
+
+function openLoginForm(){
+	console.log("open");
+	$("#loginDropdown").addClass("open");
 }

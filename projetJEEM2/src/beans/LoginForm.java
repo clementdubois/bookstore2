@@ -14,7 +14,6 @@ public class LoginForm {
   private String password;
 
   @NotNull
-  @Length(min = 3, max = 25)
   public String getLogin() {
     return login;
   }
@@ -25,7 +24,6 @@ public class LoginForm {
     return password;
   }
   @NotNull
-  @Length(min = 3, max = 25)
   public void setPassword(String password) {
     this.password = password;
   }
