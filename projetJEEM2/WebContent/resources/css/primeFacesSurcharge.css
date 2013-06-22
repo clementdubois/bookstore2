@@ -8,3 +8,6 @@
 .ui-widget-content{
 	border:none !important;
 }
+.navbar form{
+	margin:0;
+}
