@@ -49,6 +49,14 @@ public class BookFrontController implements Serializable {
 		return "/frontOffice/books/show";
 	}
 	
+	public List<Book> bestSells(){
+		List<Book> books = (List<Book>)bookService.findWithNamedQuery("Book.bestSells");
+		for(Book b : books){
+			System.out.println(b.getId());
+		}
+		return books;
+	}
+	
 	public List<Book> getBooks() {
 		return books;
 	}

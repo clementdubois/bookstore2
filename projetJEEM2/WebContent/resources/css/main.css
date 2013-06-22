@@ -120,3 +120,9 @@ a.product_link {
   padding: 15px 0 5px;
   width: 150px;
 }
+
+/*Home*/
+.thumbnail img{
+	width:260px !important;
+	height:180px !important;
+}

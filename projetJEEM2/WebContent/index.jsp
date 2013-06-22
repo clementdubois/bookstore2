@@ -7,7 +7,7 @@
     xmlns:f="http://java.sun.com/jsf/core">
 <f:view>
 <h:head>
-<meta http-equiv="refresh" content="0; URL=frontOffice/login.jsf">
+<meta http-equiv="refresh" content="0; URL=frontOffice/home.jsf">
 </h:head>
 <h:body></h:body>
 </f:view>

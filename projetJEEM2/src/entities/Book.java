@@ -21,7 +21,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 @NamedQueries({
 @NamedQuery(name = "Book.findAll", query = "Select b From Book b"),
 @NamedQuery(name = "Book.findLikeOnTitle", query = "Select b From Book b where b.title like :like"),
-@NamedQuery(name = "Book.findByCategory", query = "Select b From Book b where b.category = :category")
+@NamedQuery(name = "Book.findByCategory", query = "Select b From Book b where b.category = :category"),
 })
 
 @XmlRootElement

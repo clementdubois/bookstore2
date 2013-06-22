@@ -6,8 +6,10 @@ $(function() {
   $('.dropdown-menu').click(function(e) {
     e.stopPropagation();
   });
+  
+  
 });
 
-function checkPanier(){
+function vertPanier(){
 	
 }
