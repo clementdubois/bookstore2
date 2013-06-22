@@ -12,13 +12,13 @@
         <h:commandLink action="/frontOffice/client/client.jsf"
 					value="#{currentClient.login}" />
         <h:commandLink action="#{clientController.doLogout}"
-					value="Se déconnecter" />
+					value="#{strings['logout']}" />
 			</h:panelGroup>
 			<h:panelGroup rendered="#{!clientController.loggedIn}">
-				<h:commandLink action="/frontOffice/login.jsf" value="Se connecter" />
+				<h:commandLink action="/frontOffice/login.jsf" value="#{strings['login']}" />
 				<h:outputText value="&#160;" />
 				<h:commandLink action="/frontOffice/inscription.jsf"
-					value="S'inscrire" />
+					value="#{strings['signin']}" />
 			</h:panelGroup>
 		</h:form>
 
