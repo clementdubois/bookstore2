@@ -12,7 +12,7 @@
 					<span class="icon-bar"></span> 
 					<span class="icon-bar"></span>
 				</a> 
-				<a class="brand" href="login.jsf">Book Store</a>
+				<a class="brand" href="#{request.contextPath}/frontOffice/login.jsf">Book Store</a>
 				<div class="nav-collapse">
 					<h:form>
 						<ul class="nav">
@@ -37,7 +37,28 @@
 							</h:panelGroup>
 						</ul>
 					</h:form>
-					<!-- The drop down menu -->
+					<h:form id="form_panier">
+							<ul class="nav pull-right">
+								<h:panelGroup rendered="#{clientController.loggedIn}">
+									<li>
+										<a href="#{request.contextPath}/frontOffice/client/client.jsf">Mon Profil</a>
+									</li>
+									<li>
+										<h:commandLink action="#{clientController.doLogout}" value="Se déconnecter" />
+									</li>
+								</h:panelGroup>
+								<h:panelGroup rendered="#{not empty panierBean.panier.items}">
+									<li class="dropdown">
+										<a class="dropdown-toggle" href="#" data-toggle="dropdown">Panier (#{panierBean.panier.size})<strong class="caret"></strong></a>
+										<div class="dropdown-menu" style="padding: 15px; padding-bottom: 0px;">
+											<ui:insert name="panier">
+												<ui:include src="/frontOffice/panier/apercu.xhtml" />
+											</ui:insert>
+										</div>
+									</li>
+								</h:panelGroup>
+							</ul>
+						</h:form>
 					<h:panelGroup rendered="#{!clientController.loggedIn}">
 						<h:form>
 							<ul class="nav pull-right">
@@ -60,28 +81,7 @@
 							</ul>
 						</h:form>
 					</h:panelGroup>
-						<h:form id="form_panier">
-							<ul class="nav pull-right">
-								<h:panelGroup rendered="#{clientController.loggedIn}">
-									<li>
-										<a href="#{request.contextPath}/frontOffice/client/client.jsf">Mon Profil</a>
-									</li>
-									<li>
-										<h:commandLink action="#{clientController.doLogout}" value="Se déconnecter" />
-									</li>
-								</h:panelGroup>
-								<h:panelGroup rendered="#{not empty panierBean.panier.items}">
-									<li class="dropdown">
-										<a class="dropdown-toggle" href="#" data-toggle="dropdown">Panier <strong class="caret"></strong></a>
-										<div class="dropdown-menu" style="padding: 15px; padding-bottom: 0px;">
-											<ui:insert name="panier">
-												<ui:include src="/frontOffice/panier/apercu.xhtml" />
-											</ui:insert>
-										</div>
-									</li>
-								</h:panelGroup>
-							</ul>
-						</h:form>
+						
 				</div>
 				<!--/.nav-collapse -->
 			</div>

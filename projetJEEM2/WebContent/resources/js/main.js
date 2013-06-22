@@ -7,3 +7,7 @@ $(function() {
     e.stopPropagation();
   });
 });
+
+function checkPanier(){
+	
+}

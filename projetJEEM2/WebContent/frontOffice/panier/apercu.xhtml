@@ -6,54 +6,57 @@
 	<div id="cart_block" class="block column_box exclusive"
 		style="display: block;">
 		<div class="block_content toggle_content">
-			<p:panel id="panier_list">
 			<div id="cart_block_list" class="expanded">
-				<div class="products clearfix">
-					<ui:repeat value="#{panierBean.panier.items}" var="itemOrder">
-						<div id="livre_#{itemOrder.book.id}" class="clearfix first_item">
-							<a class="cart_image"> 
-								<h:graphicImage name="#{itemOrder.book.photo}" library="images" />
-							</a> 
-							<span class="quantity-formated"> 
-								<span class="quantity" style="opacity: 1;">#{itemOrder.quantity}</span>x
-							</span>
-							<p:commandLink styleClass="cart_block_product_name product_link"
-								action="#{bookFrontController.showBook(itemOrder.book)}"
-								value="#{itemOrder.book.getTitle()}" />
-							<div class="remove_link"> 
-								<p:commandLink actionListener="#{panierBean.enleverBook(itemOrder.getBook())}"
-									update=":form_panier:panier_list"
-									image="moins"
-									styleClass="ajax_cart_block_remove_link" >
-								    <h:graphicImage name="images/moins.png" styleClass="moins"/>
-								</p:commandLink> 
-								
-							</div> 
-							<div class="add_link">
-								<p:commandLink actionListener="#{panierBean.addBook(itemOrder.getBook())}"
-									update=":form_panier:panier_list"
-									image="plus"
-									styleClass="ajax_cart_block_remove_link plus" >
-								    <h:graphicImage name="images/plus.jpeg" styleClass="plus"/>
-								</p:commandLink> 
-							</div> 
-							<span class="price">#{itemOrder.total}€</span>
-						</div>
-					</ui:repeat>
-				</div>
-				<div class="cart-prices">
-					<div class="cart-prices-block">
-						<span id="cart_block_total" class="price ajax_block_cart_total">#{panierBean.panier.total}€</span>
-						<span>Total</span>
+				<p:panel id="panier_liste">
+					<div class="products clearfix">
+						<ui:repeat value="#{panierBean.panier.items}" var="itemOrder">
+							<div id="livre_#{itemOrder.book.id}" class="clearfix first_item">
+								<a class="cart_image"> 
+									<h:graphicImage name="#{itemOrder.book.photo}" library="images" />
+								</a> 
+								<span class="quantity-formated"> 
+									<span class="quantity" style="opacity: 1;">#{itemOrder.quantity}</span>x
+								</span>
+								<p:commandLink styleClass="cart_block_product_name product_link"
+									action="#{bookFrontController.showBook(itemOrder.book)}"
+									value="#{itemOrder.book.getTitle()}" />
+								<div class="remove_link"> 
+									<p:commandLink actionListener="#{panierBean.enleverBook(itemOrder.getBook().getId())}"
+										update=":form_panier:panier_liste"
+										image="moins"
+										styleClass="ajax_cart_block_remove_link"
+										oncomplete="checkPanier()" >
+									    <h:graphicImage name="images/moins.png" styleClass="moins"/>
+									</p:commandLink> 
+									
+								</div> 
+								<div class="add_link">
+									<p:commandLink actionListener="#{panierBean.addBook(itemOrder.getBook().getId())}"
+										update=":form_panier:panier_liste"
+										image="plus"
+										styleClass="ajax_cart_block_remove_link" >
+									    <h:graphicImage name="images/plus.jpeg" styleClass="plus"/>
+									</p:commandLink> 
+								</div> 
+								<span class="price">#{itemOrder.total}€</span>
+							</div>
+						</ui:repeat>
 					</div>
-				</div>
-				<p id="cart-buttons" class="clearfix">
-					<h:commandLink id="button_order_cart" styleClass="exclusive"
-						action="#{panierBean.validerPanier()}"
-						value="#{strings['panier.valider']}" />
-				</p>
+					<div class="cart-prices">
+						<div class="cart-prices-block">
+							<span id="cart_block_total" class="price ajax_block_cart_total">#{panierBean.panier.total}€</span>
+							<span>Total</span>
+						</div>
+					</div>
+				
+				
+					<p id="cart-buttons" class="clearfix">
+						<h:commandLink id="button_order_cart" styleClass="exclusive"
+							action="#{panierBean.validerPanier()}"
+							value="#{strings['panier.valider']}" />
+					</p>
+				</p:panel>
 			</div>
-			</p:panel>
 		</div>
 	</div>
 </ui:composition>

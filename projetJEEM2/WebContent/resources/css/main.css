@@ -84,20 +84,21 @@ a, a:visited, a:active, a:link, a:focus {
 }
 #cart_block #cart_block_list div a {
   line-height: 17px;
+  font-size:0.7em;
 }
 #cart_block .remove_link {
   height: 24px;
-  position: absolute;
   right: 12px;
   top: 10px;
   width: 19px;
+  float:right;
 }
 #cart_block .add_link {
   height: 24px;
-  position: absolute;
   right: 7px;
   top: 40px;
   width: 19px;
+  float:right;
 }
 a.product_link {
   color: #FF553D;
