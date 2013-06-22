@@ -52,8 +52,6 @@ public class ClientController implements Serializable {
 		this.currentClient = currentClient;
 	}
 
-
-
 	public String doLogin() {
 		try {
 			currentClient = clientService.login(loginForm.getLogin(),

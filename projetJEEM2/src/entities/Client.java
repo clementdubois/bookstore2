@@ -57,6 +57,7 @@ public class Client extends Persistent {
   public List<Order> getCommandes() {
     return commandes;
   }
+  
   public void setCommandes(List<Order> commandes) {
     this.commandes = commandes;
   }
