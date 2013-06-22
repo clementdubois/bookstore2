@@ -1,29 +1,8 @@
 /*Toolbar*/
-#top{
-	background-color:oldlace;
-}
-#logo{
-	display:inline-block;
-	width:10%;
-}
-#logo img{
-	width:100%;
-}
-#menu{
-	display:inline-block;
-	width:auto;
-	text-align:center;
-	margin-left:20%;
-}
-#menu .ui-menu{
-	text-align:center;
-}
-#connection{
-	display:inline-block;
-	width:30%;
-	float:right;
-}
 
+
+
+/*Panier*/
 .moins, .plus{
 	width:20px;
 	height:20px;
