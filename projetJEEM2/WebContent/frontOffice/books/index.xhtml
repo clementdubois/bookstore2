@@ -11,11 +11,12 @@
 					<p:panel id="infoBook" header="#{book.getTitle()}"
 						style="text-align:center">
 						<h:panelGrid columns="1" style="width:80%">
-							<h:graphicImage name="books/harry.png" library="images" width="50"
+							<h:graphicImage name="#{book.photo}" library="images" width="50"
 								height="50" />
 							<h:form id="bookForm">
 								<h:commandLink action="#{bookFrontController.showBook(book)}"
 									value="#{book.getTitle()}" />
+									<br/>
 								<h:commandLink action="#{panierBean.addBook(book)}"
 									value="Ajouter au panier" />
 							</h:form>

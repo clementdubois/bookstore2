@@ -25,19 +25,18 @@ import beans.LoginForm;
 import beans.MessageBean;
 
 @Named
-@RequestScoped
+@SessionScoped
 public class CategoryFrontController implements Serializable {
 	@Inject
 	private Logger log;
 	@EJB
 	private CategoryService categoryService;
-	
-	private Category category;
-	
+		
 	@Produces
 	@Named
-	public List getCategoriesBook(){
+	public List<Category> getCategoriesBook(){
 		return (List<Category>) categoryService.findAll();
 	}
+	
 
 }
