@@ -1,3 +1,7 @@
+.container{
+	margin-top:20px;
+}
+
 /*Toolbar*/
 .navbar-fixed-top{
 	position:relative !important;
@@ -66,12 +70,6 @@ input.button_mini, input.button_small, input.button, input.button_large, input.b
   margin-right: 10px;
   width: 70px;
 }
-a, a:visited, a:active, a:link, a:focus {
-  color: #333333;
-  cursor: pointer;
-  outline: medium none;
-  text-decoration: none;
-}
 #cart_block .quantity-formated {
   color: #343336;
   display: inline-block;
@@ -125,7 +123,7 @@ a.product_link {
 }
 
 /*Home*/
-.thumbnail img{
+#home .thumbnail img{
 	width:260px !important;
 	height:180px !important;
 }
@@ -135,5 +133,10 @@ a.product_link {
 	margin-left:auto !important;
 	margin-right:auto !important;
 	float:none !important;
-	margin-top:20px !important;
+}
+
+/*Index Book*/
+#indexBook img{
+	margin-right: 10px;
+	height:130px !important; 
 }

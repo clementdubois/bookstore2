@@ -12,7 +12,7 @@
 						<ui:repeat value="#{panierBean.panier.items}" var="itemOrder">
 							<div id="livre_#{itemOrder.book.id}" class="clearfix first_item">
 								<a class="cart_image"> 
-									<h:graphicImage name="#{itemOrder.book.photo}" library="images" />
+									<h:graphicImage styleClass="img-rounded" name="#{itemOrder.book.photo}" library="images" />
 								</a> 
 								<span class="quantity-formated"> 
 									<span class="quantity" style="opacity: 1;">#{itemOrder.quantity}</span>x
@@ -24,8 +24,7 @@
 									<p:commandLink actionListener="#{panierBean.enleverBook(itemOrder.getBook().getId())}"
 										update=":form_panier:panier_liste"
 										image="moins"
-										styleClass="ajax_cart_block_remove_link"
-										oncomplete="checkPanier()" >
+										styleClass="ajax_cart_block_remove_link" >
 									    <h:graphicImage name="images/moins.png" styleClass="moins"/>
 									</p:commandLink> 
 									
@@ -52,7 +51,7 @@
 				
 					<p id="cart-buttons" class="clearfix">
 						<h:commandLink id="button_order_cart" styleClass="exclusive"
-							action="#{panierBean.validerPanier()}"
+							action="#{panierBean.validerPanier(clientController.currentClient.id)}"
 							value="#{strings['panier.valider']}" />
 					</p>
 				</p:panel>

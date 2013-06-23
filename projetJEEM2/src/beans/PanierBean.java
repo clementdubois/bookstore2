@@ -5,6 +5,7 @@ import java.util.Date;
 
 import javax.ejb.EJB;
 import javax.enterprise.context.SessionScoped;
+import javax.faces.bean.ManagedProperty;
 import javax.inject.Inject;
 import javax.inject.Named;
 
@@ -13,8 +14,10 @@ import org.primefaces.event.DragDropEvent;
 import controller.frontOffice.ClientController;
 
 import ejb.BookService;
+import ejb.ClientService;
 import ejb.OrderService;
 import entities.Book;
+import entities.Client;
 import entities.Order;
 import entities.OrderItem;
 
@@ -24,10 +27,10 @@ public class PanierBean implements Serializable{
 	private Order panier;
 	@EJB
 	private OrderService panierService;
-	@Inject
-	private ClientController clientController;
 	@EJB
 	private BookService bookService;
+	@EJB
+	private ClientService clientService;
 	
 	public PanierBean(){
 		panier = new Order();
@@ -46,9 +49,11 @@ public class PanierBean implements Serializable{
 		panier.removeOne(b);
 	}
 	
-	public void validerPanier(){
+	public void validerPanier(Long clientId){
 		panier.setDate(new Date());
-		panier.setClient(clientController.getCurrentClient());
+		if(clientId != null){
+			panier.setClient(clientService.find(clientId));
+		}
 		panierService.create(panier);
 		panier = new Order();
 	}
@@ -68,7 +73,5 @@ public class PanierBean implements Serializable{
 	public void setPanier(Order panier) {
 		this.panier = panier;
 	}
-	
-	
 	
 }
