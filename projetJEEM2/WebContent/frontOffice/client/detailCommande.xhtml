@@ -1,26 +1,28 @@
 <ui:composition xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://java.sun.com/jsf/facelets"
-  xmlns:f="http://java.sun.com/jsf/core" xmlns:h="http://java.sun.com/jsf/html" template="../template.xhtml">
+  xmlns:f="http://java.sun.com/jsf/core" xmlns:h="http://java.sun.com/jsf/html" 
+  xmlns:p="http://primefaces.org/ui"
+  template="../template.xhtml">
   <ui:define name="content">
-    <h:form id="contentForm">
-   	  <h:messages globalOnly="true"/>
-      <h:panelGrid columns="3"> 	
-        <h:dataTable value="#{currentOrder.items}" var="item">
-	  		<f:facet name="header">#{strings['items']} - #{strings['order']} num. #{currentOrder.id}</f:facet>
-	  		<h:column>
-	  			<f:facet name="header">Item No</f:facet>
-	  			#{item.id}
-			</h:column>
-			<h:column>
-				<f:facet name="header">Book title</f:facet>
-	  			#{item.book.title}
-			</h:column>
-			<h:column>
-				<f:facet name="header">Quantity</f:facet>
-	  			#{item.quantity}
-			</h:column>
-	  	</h:dataTable>
-      </h:panelGrid>
-      <h:commandLink action="client.jsf" value="#{strings['back']}"/>
-    </h:form>
+ 	<p:accordionPanel value="#{clientController.currentClient.commandes}" var="order"> 
+        <p:tab title="#{order.date}">  
+            <h:panelGrid columns="2" cellpadding="10"> 
+            	<p:dataTable value="#{order.items}" var="orderItem"> 
+					<p:column headerText="#{strings['title']}">
+						<p:commandLink action="#{bookFrontController.showBook(orderItem.book.getId())}" 
+							value="#{orderItem.book.getTitle()}" />
+					</p:column>
+					<p:column headerText="#{strings['price']}">
+						<h:outputText value="#{orderItem.book.price} €"/>
+					</p:column>  
+					<p:column headerText="#{strings['quantity']}">
+						<h:outputText value="#{orderItem.quantity}"/>
+					</p:column>  
+					<p:column headerText="#{strings['total']}">
+						<h:outputText value="#{orderItem.total} €"/>
+					</p:column>  
+            	</p:dataTable>
+            </h:panelGrid>  
+        </p:tab>  
+    </p:accordionPanel>  
   </ui:define>
 </ui:composition>

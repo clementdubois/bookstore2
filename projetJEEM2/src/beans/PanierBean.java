@@ -37,8 +37,6 @@ public class PanierBean implements Serializable{
 	};
 	
 	public void addBook(Long id){
-		System.out.println("add boooooookkkkkk");
-		System.out.println(id);
 		Book b = bookService.find(id);
 		panier.addOne(b);
 	}
@@ -59,10 +57,7 @@ public class PanierBean implements Serializable{
 	}
 	
 	public void dropBook(DragDropEvent ddEvent){
-		System.out.println(ddEvent.getData().toString());
 		Book book = (Book) ddEvent.getData();
-		System.out.println(book.getTitle());
-		System.out.println(book.getId());
 		addBook(book.getId());
 	}
 
