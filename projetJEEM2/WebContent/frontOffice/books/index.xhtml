@@ -16,8 +16,10 @@
 									value="Ajouter au panier" update=":form_panier"
 									styleClass="btn btn-primary icon pull-right" />
 								<h4>
-									<p:commandLink action="#{bookFrontController.showBook(book.getId())}"
-										value="#{book.getTitle()}" />
+									<a class="" data-toggle="modal" href="#bookModal_#{book.id}">#{book.getTitle()}</a> 
+									<ui:insert name="bookShow">
+										<ui:include src="/frontOffice/books/show.xhtml" />
+									</ui:insert>
 								</h4>
 								<small><b>Titre: </b>#{book.title}</small><br/>
 								<small><b>Prix: </b>#{book.price}</small>

@@ -17,13 +17,17 @@
 										<li class="span3">
 											<div class="caption">
 												<h5>
-													<p:commandLink action="#{bookFrontController.showBook(book.getId())}"
-														value="#{book.getTitle()}" />
+													<h:form>
+														<a class="" data-toggle="modal" href="#bookModal_#{book.id}">#{book.getTitle()}</a> 
+														<ui:insert name="bookShow">
+															<ui:include src="/frontOffice/books/show.xhtml" />
+														</ui:insert>
+													</h:form>
 												</h5>
 											</div>
 											<div class="thumbnail">
 												<h:graphicImage name="#{book.photo}" library="images"/>
-												<p:commandButton actionListener="#{panierBean.addBook(book.id)}" value="Ajouter au panier" update=":form_panier" />
+												<p:commandButton styleClass="btn btn-large btn-info" actionListener="#{panierBean.addBook(book.id)}" value="Ajouter au panier" update=":form_panier" />
 											</div>
 										</li>
 								<h:outputText value="&lt;/ul&gt;" escape="false" rendered="#{loop.last or (loop.index + 1) % 4 == 0}" />

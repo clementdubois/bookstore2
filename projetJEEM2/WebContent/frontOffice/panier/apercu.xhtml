@@ -19,7 +19,7 @@
 								</span>
 								<p:commandLink styleClass="cart_block_product_name product_link"
 									action="#{bookFrontController.showBook(itemOrder.book)}"
-									value="#{itemOrder.book.getTitle()}" />
+									value="#{itemOrder.book.getTitle()}" ajax="false"/>
 								<div class="remove_link"> 
 									<p:commandLink actionListener="#{panierBean.enleverBook(itemOrder.getBook().getId())}"
 										update=":form_panier:panier_liste"
