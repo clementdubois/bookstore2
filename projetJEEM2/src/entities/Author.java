@@ -2,12 +2,20 @@ package entities;
 import java.io.Serializable;
 import javax.persistence.Entity;
 import javax.persistence.ManyToMany;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 
 import java.util.*;
 
 @Entity()
+
+@NamedQueries({
+@NamedQuery(name = "Author.findAll", query = "Select a From Author a"),
+@NamedQuery(name = "Author.findLikeOnName", query = "Select a From Author a where upper(a.firstName) like :like or upper(a.lastName) like :like2")
+})
+
 @XmlRootElement
 
 public class Author extends Persistent{

@@ -11,7 +11,9 @@ import javax.inject.Inject;
 import javax.inject.Named;
 
 import beans.SearchForm;
+import ejb.AuthorService;
 import ejb.BookService;
+import ejb.CategoryService;
 
 @SessionScoped
 @ManagedBean
@@ -20,13 +22,26 @@ public class SearchController implements Serializable {
 	private SearchForm searchForm;
 	@EJB
 	private BookService bookService;
+	@EJB
+	private CategoryService categoryService;
+	@EJB
+	private AuthorService authorService;
 	private List results;
 
 	@Produces
 	@Named
 	public String doSearch(){
-		bookService.search(searchForm.getSearchText());
+		if(searchForm.getOption().equals("book"))
+			results = bookService.search(searchForm.getSearchText());
+		else if(searchForm.getOption().equals("category"))
+			results = categoryService.search(searchForm.getSearchText());
+		else if(searchForm.getOption().equals("author"))
+			results = authorService.search(searchForm.getSearchText());
 		return "/frontOffice/search/result";
+	}
+	
+	public String beanType(){
+		return searchForm.getOption();
 	}
 	
 	@Produces

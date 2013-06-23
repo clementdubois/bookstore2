@@ -1,6 +1,21 @@
 <ui:composition xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://java.sun.com/jsf/facelets"
   xmlns:f="http://java.sun.com/jsf/core" xmlns:h="http://java.sun.com/jsf/html" template="../template.xhtml">  
   <ui:define name="content">
-      Results
+    <h:form id="contentForm">
+      <h:panelGrid columns="2">
+        <f:facet name="header">#{strings['results']} : 
+        <h:outputText rendered="#{searchController.beanType().equals('author')}" value="#{strings['authors']}" />
+        <h:outputText rendered="#{searchController.beanType().equals('book')}" value="#{strings['books']}" />
+        <h:outputText rendered="#{searchController.beanType().equals('category')}" value="#{strings['category']}" />
+        </f:facet>
+        <h:dataTable value="#{searchController.results}" var="result">
+	  		<h:column>
+				<h:commandLink rendered="#{searchController.beanType().equals('book')}" action="#{bookFrontController.showBook(result)}" value="#{result.title}" />
+				<h:commandLink rendered="#{searchController.beanType().equals('category')}" action="#{bookFrontController.index(result.id)}" value="#{result.title}" />
+				<h:commandLink rendered="#{searchController.beanType().equals('author')}" value="#{result.firstName} #{result.lastName}" />
+			</h:column>
+	  	</h:dataTable>
+      </h:panelGrid>
+    </h:form>
   </ui:define>
 </ui:composition>

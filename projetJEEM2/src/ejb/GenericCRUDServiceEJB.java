@@ -51,8 +51,13 @@ public class GenericCRUDServiceEJB<T> implements GenericCRUDService<T>{
 
   public List findWithNamedQuery(String namedQueryName, Map<String,Object> parameters) {
     Query query = em.createNamedQuery(namedQueryName);
-    for(Entry<String, Object> entry : parameters.entrySet())
-      query.setParameter(entry.getKey(), entry.getValue());
+    for(Entry<String, Object> entry : parameters.entrySet()){
+    	if(namedQueryName.contains("findLikeOn")){
+			query.setParameter(entry.getKey(), "%" + ((String)(entry.getValue())).toUpperCase() + "%");
+    	}
+    	else
+    		query.setParameter(entry.getKey(), entry.getValue());
+    }
      return query.getResultList(); 
   }
 }

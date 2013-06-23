@@ -4,11 +4,19 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Entity;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 
 @Entity()
+
+@NamedQueries({
+@NamedQuery(name = "Category.findAll", query = "Select c From Category c"),
+@NamedQuery(name = "Category.findLikeOnTitle", query = "Select c From Category c where upper(c.title) like :like"),
+})
+
 @XmlRootElement
 
 public class Category extends Persistent {

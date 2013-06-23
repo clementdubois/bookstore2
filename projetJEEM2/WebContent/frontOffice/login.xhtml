@@ -1,5 +1,5 @@
 <ui:composition xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://java.sun.com/jsf/facelets"
-  xmlns:f="http://java.sun.com/jsf/core" xmlns:h="http://java.sun.com/jsf/html" template="template.xhtml">
+  xmlns:f="http://java.sun.com/jsf/core" xmlns:h="http://java.sun.com/jsf/html" xmlns:p="http://primefaces.org/ui" template="template.xhtml">
   
   <ui:define name="content">
     <h:form id="contentForm">
@@ -14,5 +14,19 @@
       </h:panelGrid>
       <h:commandButton action="#{clientController.doLogin}" value="#{strings['submit']}"/>
     </h:form>
+    
+	<h:form id="searchForm">
+	
+		<h:panelGrid columns="2" style="margin-bottom:10px" cellpadding="5">  
+	        <h:outputText value="Options: " />  
+	        <p:selectOneRadio id="option" value="#{searchForm.option}">  
+	            <f:selectItem itemLabel="Book" itemValue="book" />  
+	            <f:selectItem itemLabel="Category" itemValue="category" />  
+	            <f:selectItem itemLabel="Author" itemValue="author" />  
+	        </p:selectOneRadio>
+	    </h:panelGrid>
+	    <h:inputText id="searchText" value="#{searchForm.searchText}"/>
+      	<h:commandButton action="#{searchController.doSearch}" value="#{strings['submit']}"/>
+	</h:form>
   </ui:define>
 </ui:composition>
