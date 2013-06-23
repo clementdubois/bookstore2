@@ -7,76 +7,74 @@
 	<div class="navbar navbar-fixed-top" id="toolbar">
 		<div class="navbar-inner">
 			<div class="container">
-				<a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse"> 
-					<span class="icon-bar"></span> 
-					<span class="icon-bar"></span> 
-					<span class="icon-bar"></span>
-				</a> 
-				<a class="brand" href="#{request.contextPath}/frontOffice/home.jsf">Book Store</a>
+				<a class="btn btn-navbar" data-toggle="collapse"
+					data-target=".nav-collapse"> <span class="icon-bar"></span> <span
+					class="icon-bar"></span> <span class="icon-bar"></span>
+				</a> <a class="brand" href="#{request.contextPath}/frontOffice/home.jsf">Book
+					Store</a>
 				<div class="nav-collapse">
 					<h:form>
 						<ul class="nav">
-							<li>
-								<a href="#{request.contextPath}/frontOffice/home.jsf">Accueil</a>
+							<li><a href="#{request.contextPath}/frontOffice/home.jsf">Accueil</a>
 							</li>
-							<li class="dropdown">
-								<a class="dropdown-toggle" data-toggle="dropdown" href="#">Livres <b class="caret"></b></a>
+							<li class="dropdown"><a class="dropdown-toggle"
+								data-toggle="dropdown" href="#">Livres <b class="caret"></b></a>
 								<ul class="dropdown-menu">
 									<ui:repeat value="#{categoryFrontController.categoriesBook}"
 										var="category">
-										<li>
-											<h:commandLink action="#{bookFrontController.index(category.id)}" value="#{category.getTitle()}" />
-										</li>
+										<li><h:commandLink
+												action="#{bookFrontController.index(category.id)}"
+												value="#{category.title}" /></li>
 									</ui:repeat>
-								</ul>
-							</li>
+								</ul></li>
 							<h:panelGroup rendered="#{clientController.loggedIn}">
-								<li>
-									<a href="#{request.contextPath}/frontOffice/client/detailCommande.jsf">Mes commandes</a>
-								</li>
+								<li><a
+									href="#{request.contextPath}/frontOffice/client/detailCommande.jsf">Mes
+										commandes</a></li>
 							</h:panelGroup>
 						</ul>
 					</h:form>
 					<h:form id="form_panier">
-							<ul class="nav pull-right">
-								<h:panelGroup rendered="#{clientController.loggedIn}">
-									<li>
-										<a href="#{request.contextPath}/frontOffice/client/client.jsf">Mon Profil</a>
-									</li>
-									<li>
-										<h:commandLink action="#{clientController.doLogout}" value="Se déconnecter" />
-									</li>
-								</h:panelGroup>
-								<h:panelGroup rendered="#{!clientController.loggedIn}">
-									<li>
-										<a href="#{request.contextPath}/frontOffice/inscription.jsf">S'inscrire</a>
-									</li>
-									<li class="divider-vertical"></li>
-									<li class="dropdown" id="loginDropdown">
-										<a class="dropdown-toggle" href="#" data-toggle="dropdown">Se connecter <strong class="caret"></strong></a>
-										<div class="dropdown-menu" style="padding: 15px; padding-bottom: 0px;">
-											<ui:insert name="login">
-												<ui:include src="/frontOffice/login.xhtml" />
-											</ui:insert>
-										</div>
-									</li>
-								</h:panelGroup>
-								<h:panelGroup rendered="#{not empty panierBean.panier.items}">
-									<li class="dropdown">
-										<a class="dropdown-toggle" href="#" data-toggle="dropdown">Panier (#{panierBean.panier.size})<strong class="caret"></strong></a>
-										<div class="dropdown-menu" style="padding: 15px; padding-bottom: 0px;">
-											<ui:insert name="panier">
-												<ui:include src="/frontOffice/panier/apercu.xhtml" />
-											</ui:insert>
-										</div>
-									</li>
-								</h:panelGroup>
-								<li id="localChooser">
-									<dgc:localeChooser/>
+						<ul class="nav pull-right">
+							<h:panelGroup rendered="#{clientController.loggedIn}">
+								<li><a
+									href="#{request.contextPath}/frontOffice/client/client.jsf">Mon
+										Profil</a></li>
+								<li><h:commandLink action="#{clientController.doLogout}"
+										value="Se déconnecter" /></li>
+							</h:panelGroup>
+							<h:panelGroup rendered="#{!clientController.loggedIn}">
+								<li><a
+									href="#{request.contextPath}/frontOffice/inscription.jsf">S'inscrire</a>
 								</li>
-							</ul>
-						</h:form>
-						
+								<li class="divider-vertical"></li>
+								<li class="dropdown" id="loginDropdown">
+									<a
+									class="dropdown-toggle" href="#" data-toggle="dropdown">Se
+										connecter <strong class="caret"></strong>
+									</a>
+									<div class="dropdown-menu"
+										style="padding: 15px; padding-bottom: 0px;">
+										<ui:insert name="login">
+											<ui:include src="/frontOffice/login.xhtml" />
+										</ui:insert>
+									</div>
+								</li>
+							</h:panelGroup>
+							<h:panelGroup rendered="#{not empty panierBean.panier.items}">
+								<li class="dropdown"><a class="dropdown-toggle" href="#"
+									data-toggle="dropdown">Panier (#{panierBean.panier.size})<strong
+										class="caret"></strong></a>
+									<div class="dropdown-menu"
+										style="padding: 15px; padding-bottom: 0px;">
+										<ui:insert name="panier">
+											<ui:include src="/frontOffice/panier/apercu.xhtml" />
+										</ui:insert>
+									</div></li>
+							</h:panelGroup>
+							<li id="localChooser"><dgc:localeChooser /></li>
+						</ul>
+					</h:form>
 				</div>
 				<!--/.nav-collapse -->
 			</div>
