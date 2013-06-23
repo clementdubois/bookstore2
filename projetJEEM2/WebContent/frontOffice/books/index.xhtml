@@ -4,31 +4,30 @@
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:p="http://primefaces.org/ui" template="../template.xhtml">
 	<ui:define name="content">
-		<h:form id="bookListForm">
-			<p:dataGrid value="#{bookFrontController.books}" var="book"
-				column="6" id="bookList">
-				<p:column>
-					<p:panel id="infoBook" header="#{book.getTitle()}"
-						style="text-align:center">
-						<h:panelGrid columns="1" style="width:80%">
-							<h:graphicImage name="#{book.photo}" library="images" width="50"
-								height="50" />
-							<h:form id="bookForm">
-								<p:commandLink action="#{bookFrontController.showBook(book)}"
-									value="#{book.getTitle()}" />
-									<br/>
-								<p:commandLink action="#{panierBean.addBook(book)}"
-									value="Ajouter au panier" />
-							</h:form>
-						</h:panelGrid>
-
-					</p:panel>
-
-					
-
-				</p:column>
-			</p:dataGrid>
-			 
-		</h:form>
+		<div id="indexBook">
+			<ul class="thumbnails">
+				<ui:repeat value="#{bookFrontController.books}" var="book">
+					<li class="span6 clearfix">
+						<div class="thumbnail clearfix">
+							<h:graphicImage name="#{book.photo}" library="images" styleClass="pull-left span2 clearfix"/>
+	
+							<div class="caption">
+								<p:commandLink actionListener="#{panierBean.addBook(book.id)}"
+									value="Ajouter au panier" update=":form_panier"
+									styleClass="btn btn-primary icon pull-right" />
+								<h4>
+									<a class="" data-toggle="modal" href="#bookModal_#{book.id}">#{book.getTitle()}</a> 
+									<ui:insert name="bookShow">
+										<ui:include src="/frontOffice/books/show.xhtml" />
+									</ui:insert>
+								</h4>
+								<small><b>Titre: </b>#{book.title}</small><br/>
+								<small><b>Prix: </b>#{book.price}</small>
+							</div>
+						</div>
+					</li>
+				</ui:repeat>
+			</ul>
+		</div>
 	</ui:define>
 </ui:composition>

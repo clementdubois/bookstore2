@@ -6,4 +6,12 @@ $(function() {
   $('.dropdown-menu').click(function(e) {
     e.stopPropagation();
   });
+
 });
+
+
+
+function openLoginForm(){
+	console.log("open");
+	$("#loginDropdown").addClass("open");
+}

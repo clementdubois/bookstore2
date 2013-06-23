@@ -1,6 +1,34 @@
-<ui:composition xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://java.sun.com/jsf/facelets"
-  xmlns:f="http://java.sun.com/jsf/core" xmlns:h="http://java.sun.com/jsf/html" template="../template.xhtml">
-  <ui:define name="content">
-  	<h:outputText value="#{bookFrontController.book.title}" />
-  </ui:define>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+	<div id="bookModal_#{book.id}" class="modal hide fade">
+		<div class="modal-header">
+			<button class="close" data-dismiss="modal">×</button>
+			<h3>#{book.title}</h3>
+		</div>
+		<div class="modal-body">
+			<div class="row-fluid">
+				<div class="span12">
+					<div class="span3">
+						<div class="logowrapper">
+							<h:graphicImage name="#{book.photo}" library="images"/>
+						</div>
+					</div>
+					<div class="span9">
+						<form class="form-horizontal">
+							<p class="help-block">#{strings['title']} : #{book.title}</p>
+							<p class="help-block">#{strings['price']} : #{book.price} €</p>
+							<hr />
+							<div class="help-block" data-dismiss="modal">
+								<p:commandButton styleClass="btn btn-large btn-info" actionListener="#{panierBean.addBook(book.id)}" 
+								value="Ajouter au panier" update=":form_panier" />
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
 </ui:composition>

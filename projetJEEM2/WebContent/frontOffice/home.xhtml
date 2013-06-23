@@ -1,0 +1,45 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui" 
+	xmlns:c="http://java.sun.com/jstl/core"
+	template="template.xhtml">
+	<ui:define name="content">
+		<div class="container-fluid" id="home">
+			<div class="row-fluid">
+				<div class="carousel slide" id="myCarousel">
+					<div class="carousel-inner">
+						<ui:repeat value="#{bookFrontController.books}" var="book" varStatus="loop">
+							<h:outputText value="&lt;div class='item active'&gt;" escape="false" rendered="#{loop.index ==0}" />
+							<h:outputText value="&lt;div class='item'&gt;" escape="false" rendered="#{loop.index % 4 == 0 and loop.index !=0}" />
+						    	<h:outputText value="&lt;ul class='thumbnails'&gt;" escape="false" rendered="#{loop.index % 4 == 0}" />
+										<li class="span3">
+											<div class="caption">
+												<h5>
+													<h:form>
+														<a class="" data-toggle="modal" href="#bookModal_#{book.id}">#{book.getTitle()}</a> 
+														<ui:insert name="bookShow">
+															<ui:include src="/frontOffice/books/show.xhtml" />
+														</ui:insert>
+													</h:form>
+												</h5>
+											</div>
+											<div class="thumbnail">
+												<h:graphicImage name="#{book.photo}" library="images"/>
+												<p:commandButton styleClass="btn btn-large btn-info" actionListener="#{panierBean.addBook(book.id)}" value="Ajouter au panier" update=":form_panier" />
+											</div>
+										</li>
+								<h:outputText value="&lt;/ul&gt;" escape="false" rendered="#{loop.last or (loop.index + 1) % 4 == 0}" />
+						    <h:outputText value="&lt;/div&gt;" escape="false" rendered="#{loop.last or (loop.index + 1) % 4 == 0}" />
+						</ui:repeat>
+					
+					</div>
+					<a data-slide="prev" href="#myCarousel"
+						class="left carousel-control">‹</a> <a data-slide="next"
+						href="#myCarousel" class="right carousel-control">›</a>
+				</div>
+			</div>
+		</div>
+	</ui:define>
+</ui:composition>

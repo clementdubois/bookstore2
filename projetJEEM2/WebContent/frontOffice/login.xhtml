@@ -1,22 +1,16 @@
 <ui:composition xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://java.sun.com/jsf/facelets"
   xmlns:f="http://java.sun.com/jsf/core" xmlns:h="http://java.sun.com/jsf/html" xmlns:p="http://primefaces.org/ui" template="template.xhtml">
-  
-  <ui:define name="content">
-    <h:form id="contentForm">
-      <h:messages globalOnly="true"/>
-      <h:panelGrid columns="3">
-        <h:outputText value="#{strings['login']}" />
-        <h:inputText id="login" value="#{loginForm.login}" required="true"/>
-        <h:message for="login"></h:message>
-        <h:outputText value="#{strings['password']}" />
-        <h:inputSecret id="password" value="#{loginForm.password}" required="true" />
-        <h:message for="password"></h:message>
-      </h:panelGrid>
-      <h:commandButton action="#{clientController.doLogin}" value="#{strings['submit']}"/>
-    </h:form>
-    
+	<p:panel id="loginForm">
+	    <h:messages globalOnly="true"/>
+	    <h:outputText value="#{strings['login']}" />
+		<h:inputText id="login" value="#{loginForm.login}"/>
+		<h:message for="login"></h:message>
+		<h:outputText value="#{strings['password']}" />
+		<h:inputSecret id="password" value="#{loginForm.password}" />
+		<h:message for="password"></h:message>
+		<p:commandButton actionListener="#{clientController.doLogin}" value="#{strings['submit']}" update=":form_panier" oncomplete="openLoginForm()"/>
+	</p:panel>
 	<h:form id="searchForm">
-	
 		<h:panelGrid columns="2" style="margin-bottom:10px" cellpadding="5">  
 	        <h:outputText value="Options: " />  
 	        <p:selectOneRadio id="option" value="#{searchForm.option}">  
@@ -28,5 +22,5 @@
 	    <h:inputText id="searchText" value="#{searchForm.searchText}"/>
       	<h:commandButton action="#{searchController.doSearch}" value="#{strings['submit']}"/>
 	</h:form>
-  </ui:define>
 </ui:composition>
+

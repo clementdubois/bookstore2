@@ -18,7 +18,7 @@ import entities.Book;
 import entities.Category;
 
 @ManagedBean
-@RequestScoped
+@SessionScoped
 public class BookFrontController implements Serializable {
 	
 	@Inject
@@ -34,8 +34,6 @@ public class BookFrontController implements Serializable {
 	private Book book;
 	
 	public String index(Long c){
-		System.out.println(c);
-		System.out.println("INDIXxxxxx-------");
 		if(c != null){
 			Category category = categoryService.find(c);
 			books = category.getBooks();
@@ -45,9 +43,18 @@ public class BookFrontController implements Serializable {
 		return "/frontOffice/books/index";
 	}
 	
-	public String showBook(Book b){
+	public String showBook(long id){
+		Book b = bookService.find(id);
 		this.setBook(b);
 		return "/frontOffice/books/show";
+	}
+	
+	public List<Book> bestSells(){
+		List<Book> books = (List<Book>)bookService.findWithNamedQuery("Book.bestSells");
+		for(Book b : books){
+			System.out.println(b.getId());
+		}
+		return books;
 	}
 	
 	public List<Book> getBooks() {

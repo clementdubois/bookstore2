@@ -1,6 +1,13 @@
+.container{
+	margin-top:20px;
+}
+
 /*Toolbar*/
 .navbar-fixed-top{
 	position:relative !important;
+}
+#localChooser a{
+	display:inline;
 }
 
 
@@ -63,12 +70,6 @@ input.button_mini, input.button_small, input.button, input.button_large, input.b
   margin-right: 10px;
   width: 70px;
 }
-a, a:visited, a:active, a:link, a:focus {
-  color: #333333;
-  cursor: pointer;
-  outline: medium none;
-  text-decoration: none;
-}
 #cart_block .quantity-formated {
   color: #343336;
   display: inline-block;
@@ -84,20 +85,21 @@ a, a:visited, a:active, a:link, a:focus {
 }
 #cart_block #cart_block_list div a {
   line-height: 17px;
+  font-size:0.7em;
 }
 #cart_block .remove_link {
   height: 24px;
-  position: absolute;
   right: 12px;
   top: 10px;
   width: 19px;
+  float:right;
 }
 #cart_block .add_link {
   height: 24px;
-  position: absolute;
   right: 7px;
   top: 40px;
   width: 19px;
+  float:right;
 }
 a.product_link {
   color: #FF553D;
@@ -118,4 +120,23 @@ a.product_link {
   font-size: 17px;
   padding: 15px 0 5px;
   width: 150px;
+}
+
+/*Home*/
+#home .thumbnail img{
+	width:260px !important;
+	height:180px !important;
+}
+
+/*Inscription*/
+.well{
+	margin-left:auto !important;
+	margin-right:auto !important;
+	float:none !important;
+}
+
+/*Index Book*/
+#indexBook img{
+	margin-right: 10px;
+	height:130px !important; 
 }
