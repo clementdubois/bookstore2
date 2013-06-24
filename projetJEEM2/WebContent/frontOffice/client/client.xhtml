@@ -4,40 +4,17 @@
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:p="http://primefaces.org/ui" template="../template.xhtml">
 	<ui:define name="content">
-		<h:form id="inscriptionForm">
-			<h:messages globalOnly="true" />
-				Votre Profil
-			<h:panelGrid columns="1" style="margin-bottom:10px" cellpadding="5">
-				<h:column>
-	  			Prenom : <h:inputText value="#{inscriptionForm.firstName}" required="true"/>
-				</h:column>
-				<h:column>
-				Nom : <h:inputText value="#{inscriptionForm.lastName}" required="true"/>
-				</h:column>
-				<h:commandButton action="#{clientController.update}"
-					value="#{strings['submit']}" />
-			</h:panelGrid>
-		</h:form>
-		<h:form id="changePassword">
-			 <h:messages globalOnly="true"/>
-			<h:panelGrid columns="1">
-				<h:column>
-					Ancien mot de passe : 
-					<h:inputText id="passwordCheck" value="#{passwordForm.passwordCheck}" required="true" styleClass="span3" />
-					<h:message for="passwordCheck"></h:message>
-				</h:column>
-				<h:column>
-					Nouveau mot de passe :
-					<h:inputText id="password" value="#{passwordForm.password}" required="true" styleClass="span3" />
-					<h:message for="password"></h:message>
-				</h:column>
-				<h:column>
-					<h:outputText value="#{strings['passwordConfirmation']}" /> :
-					<h:inputText id="passwordConfirmation" value="#{passwordForm.passwordConfirmation}" required="true" styleClass="span3" />
-					<h:message for="passwordConfirmation"></h:message>
-				</h:column>
-				<h:commandButton action="#{clientController.changePassword}" value="#{strings['submit']}" />
-			</h:panelGrid>
-		</h:form>
+			<div class="span4 well text-center">
+				<div class="">
+					<div class="logowrapper">
+						<h:graphicImage name="#{clientController.currentClient.avatar}" library="images" />
+					</div>
+				</div>
+				<div class="">
+					<hr />
+					<p class="help-block">#{strings['nom']} : #{clientController.currentClient.lastName}</p>
+					<p class="help-block">#{strings['prenom']} : #{clientController.currentClient.firstName}</p>
+				</div>
+			</div>
 	</ui:define>
 </ui:composition>
