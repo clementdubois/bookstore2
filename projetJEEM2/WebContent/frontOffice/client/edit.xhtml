@@ -7,11 +7,11 @@
 		<div class="span12 well">
 		    <legend>Mon Profile</legend>
 			<div class="row">
-				<h:form enctype="multipart/form-data" styleClass="span4">
-					<h:graphicImage name="#{clientController.currentClient.avatar}" library="images" styleClass="span3"/>
+				<h:form enctype="multipart/form-data" styleClass="span4" id="avatarForm">
+					<h:graphicImage name="#{clientController.currentClient.avatar}" library="images" styleClass="span3" id="avatarImg"/>
 					<p:fileUpload styleClass="span3"
 						fileUploadListener="#{clientController.handleFileUpload}"
-						mode="advanced" showButtons="false"
+						mode="advanced" showButtons="false" update=":avatarForm:avatarImg"
 						allowTypes="/(\.|\/)(gif|jpe?g|png)$/" />
 					<p:growl id="messages" showDetail="true" />
 				</h:form>

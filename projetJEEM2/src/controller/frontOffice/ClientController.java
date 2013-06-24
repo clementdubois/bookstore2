@@ -155,10 +155,12 @@ public class ClientController implements Serializable {
 	    
 	    public void handleFileUpload(FileUploadEvent event) {
 	    	try {
+	    		String fileName = event.getFile().getFileName();
+	    		String extension = fileName.substring(fileName.lastIndexOf('.'), fileName.length());
 	    		//Enregistrement du fichier sur le disque
 	    		File targetFolder = new File(this.UPLOAD_PATH + "/avatars");
 	    		InputStream inputStream = event.getFile().getInputstream();
-	    		OutputStream out = new FileOutputStream(new File(targetFolder,"avatar_"+currentClient.getId()));
+	    		OutputStream out = new FileOutputStream(new File(targetFolder,"avatar_"+currentClient.getId()+extension));
 	    		int read = 0;
 	    		byte[] bytes = new byte[1024];	    		 
 	    		while ((read = inputStream.read(bytes)) != -1) {
@@ -169,7 +171,7 @@ public class ClientController implements Serializable {
 	    		out.close();
 	    		
 	    		//Enregistrement en base de l'adresse de l'avatar	
-	    		currentClient.setAvatar("avatars/avatar_" + currentClient.getId());
+	    		currentClient.setAvatar("avatars/avatar_" + currentClient.getId() + extension);
 	    		currentClient = clientService.update(currentClient);
 	    	} catch (IOException e) {
 	    		e.printStackTrace();
