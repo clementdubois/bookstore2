@@ -1,14 +1,24 @@
 package controller.frontOffice;
 
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
 import java.io.Serializable;
 
 import javax.ejb.EJB;
 import javax.enterprise.inject.Produces;
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
+import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
 
+import org.apache.commons.io.FileUtils;
+import org.primefaces.event.FileUploadEvent;
+import org.primefaces.model.UploadedFile;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -41,9 +51,12 @@ public class ClientController implements Serializable {
 	private MessageBean messageBean;
 	@EJB
 	private ClientService clientService;
+	
+	private UploadedFile file;
 
 	private Client currentClient;
 	private Order currentOrder;
+	private String UPLOAD_PATH = "/Users/clement/git/bookstore_2/projetJEEM2/WebContent/resources/images";
 
 	@Produces
 	@Named
@@ -128,4 +141,38 @@ public class ClientController implements Serializable {
 		}
 		return "/frontOffice/client/client";
 	}
+	
+	   
+	  
+	    public UploadedFile getFile() {  
+	        return file;  
+	    }  
+	  
+	    public void setFile(UploadedFile file) {  
+	        this.file = file;  
+	    }  
+	  
+	    
+	    public void handleFileUpload(FileUploadEvent event) {
+	    	try {
+	    		//Enregistrement du fichier sur le disque
+	    		File targetFolder = new File(this.UPLOAD_PATH + "/avatars");
+	    		InputStream inputStream = event.getFile().getInputstream();
+	    		OutputStream out = new FileOutputStream(new File(targetFolder,"avatar_"+currentClient.getId()));
+	    		int read = 0;
+	    		byte[] bytes = new byte[1024];	    		 
+	    		while ((read = inputStream.read(bytes)) != -1) {
+	    			out.write(bytes, 0, read);
+	    		}
+	    		inputStream.close();
+	    		out.flush();
+	    		out.close();
+	    		
+	    		//Enregistrement en base de l'adresse de l'avatar	
+	    		currentClient.setAvatar("avatars/avatar_" + currentClient.getId());
+	    		currentClient = clientService.update(currentClient);
+	    	} catch (IOException e) {
+	    		e.printStackTrace();
+	    	}
+	    }
 }

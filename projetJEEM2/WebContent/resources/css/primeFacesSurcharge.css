@@ -11,3 +11,8 @@
 .navbar form{
 	margin:0;
 }
+
+/*File upload*/
+.fileupload-content .name, .fileupload-content .size, .fileupload-content .progress{
+	display:none;
+}
