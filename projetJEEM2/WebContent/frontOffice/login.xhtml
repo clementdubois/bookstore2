@@ -10,19 +10,5 @@
 		<h:message for="password"></h:message>
 		<p:commandButton actionListener="#{clientController.doLogin}" value="#{strings['submit']}" update=":form_panier" oncomplete="openLoginForm()"/>
 	</p:panel>
-    
-	<h:form id="searchForm">
-	
-		<h:panelGrid columns="2" style="margin-bottom:10px" cellpadding="5">  
-	        <h:outputText value="Options: " />  
-	        <p:selectOneRadio id="option" value="#{searchForm.option}">  
-	            <f:selectItem itemLabel="Book" itemValue="book" />  
-	            <f:selectItem itemLabel="Category" itemValue="category" />  
-	            <f:selectItem itemLabel="Author" itemValue="author" />  
-	        </p:selectOneRadio>
-	    </h:panelGrid>
-	    <h:inputText id="searchText" value="#{searchForm.searchText}"/>
-      	<h:commandButton action="#{bookFrontController.doSearch}" value="#{strings['submit']}"/>
-	</h:form>
 </ui:composition>
 
