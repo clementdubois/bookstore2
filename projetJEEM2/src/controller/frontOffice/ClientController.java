@@ -108,5 +108,4 @@ public class ClientController implements Serializable {
 		clientService.update(getCurrentClient());
 		return "/frontOffice/client/client";
 	}
-	
 }
