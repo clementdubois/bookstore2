@@ -20,6 +20,12 @@
 						<form class="form-horizontal">
 							<p class="help-block">#{strings['title']} : #{book.title}</p>
 							<p class="help-block">#{strings['price']} : #{book.price} €</p>
+							<p class="help-block">#{strings['category']} : #{book.category.title}</p>
+							<p class="help-block">#{strings['authors']} : 
+								<h:outputText value="#{book.authors}">
+									<f:converter converterId="listAuthorsConverter"/> 
+								</h:outputText>
+							</p>
 							<hr />
 							<div class="help-block" data-dismiss="modal">
 								<p:commandButton styleClass="btn btn-large btn-info" actionListener="#{panierBean.addBook(book.id)}" 

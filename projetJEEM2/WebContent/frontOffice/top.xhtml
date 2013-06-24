@@ -37,11 +37,20 @@
 					<h:form id="form_panier">
 						<ul class="nav pull-right">
 							<h:panelGroup rendered="#{clientController.loggedIn}">
-								<li><a
-									href="#{request.contextPath}/frontOffice/client/client.jsf">Mon
-										Profil</a></li>
-								<li><h:commandLink action="#{clientController.doLogout}"
-										value="Se déconnecter" /></li>
+								<li class="dropdown">
+									<a class="dropdown-toggle" href="#" data-toggle="dropdown">
+										Mon profil <b class="caret"></b>
+									</a>
+									<ul class="dropdown-menu" style="padding: 15px; padding-bottom: 0px;">
+										<li>
+											<a href="#{request.contextPath}/frontOffice/client/client.jsf">Voir</a>
+										</li>
+										<li class="divider"></li>
+										<li>
+											<h:commandLink action="#{clientController.doLogout}" value="Se déconnecter" />
+										</li>
+									</ul>
+								</li>	
 							</h:panelGroup>
 							<h:panelGroup rendered="#{!clientController.loggedIn}">
 								<li><a
