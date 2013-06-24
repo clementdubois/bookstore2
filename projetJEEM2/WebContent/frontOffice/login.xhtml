@@ -9,6 +9,6 @@
 		<h:outputText value="#{strings['password']}" />
 		<h:inputSecret id="password" value="#{loginForm.password}" />
 		<h:message for="password"></h:message>
-		<p:commandButton actionListener="#{clientController.doLogin}" value="#{strings['submit']}" update=":form_panier" oncomplete="openLoginForm()"/>
+		<p:commandButton actionListener="#{clientController.doLogin}" value="#{strings['submit']}" update=":form_panier :formTools" oncomplete="openLoginForm()"/>
 	</p:panel>
 </ui:composition>
