@@ -13,8 +13,10 @@ public class InscriptionForm {
   private String login;
   private String password;
   private String passwordConfirmation;
+  private String passwordCheck;
   private String firstName;
   private String lastName;
+  private boolean changePassword;
 
   @NotNull
   @Length(min = 3, max = 25)
@@ -57,6 +59,18 @@ public class InscriptionForm {
 	@Length(min = 3)
 	public void setFirstName(String firstName) {
 		this.firstName = firstName;
+	}
+	public boolean isChangePassword() {
+		return changePassword;
+	}
+	public void setChangePassword(boolean changePassword) {
+		this.changePassword = changePassword;
+	}
+	public String getPasswordCheck() {
+		return passwordCheck;
+	}
+	public void setPasswordCheck(String passwordCheck) {
+		this.passwordCheck = passwordCheck;
 	}
   
   
