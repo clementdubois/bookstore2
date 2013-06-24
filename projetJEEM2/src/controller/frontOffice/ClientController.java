@@ -15,6 +15,7 @@ import org.slf4j.LoggerFactory;
 import ejb.ClientService;
 import entities.Client;
 import entities.Order;
+import exceptions.inscription.InvalidCheckPasswordException;
 import exceptions.inscription.LoginUsedException;
 import exceptions.inscription.UnconfirmedPasswordException;
 import exceptions.login.ClientNotFoundException;
@@ -23,6 +24,7 @@ import annotations.LoggedIn;
 import beans.InscriptionForm;
 import beans.LoginForm;
 import beans.MessageBean;
+import beans.PasswordForm;
 
 @SessionScoped
 @ManagedBean
@@ -33,6 +35,8 @@ public class ClientController implements Serializable {
 	private LoginForm loginForm;
 	@Inject
 	private InscriptionForm inscriptionForm;
+	@Inject
+	private PasswordForm passwordForm;
 	@Inject
 	private MessageBean messageBean;
 	@EJB
@@ -105,7 +109,23 @@ public class ClientController implements Serializable {
 	@Produces
 	@Named
 	public String update(){
-		clientService.update(getCurrentClient());
+		currentClient = clientService.modifier(inscriptionForm, currentClient.getId());
+		messageBean.addMessage("profilModifie");
+
+		return "/frontOffice/client/client";
+	}
+	
+	@Produces
+	@Named
+	public String changePassword(){
+		try {
+			currentClient = clientService.changerPassword(passwordForm, currentClient.getId());
+			messageBean.addMessage("passwordModifie");
+		} catch (UnconfirmedPasswordException e) {
+			messageBean.addMessage("passwordsDoesntMatch");
+		} catch (InvalidCheckPasswordException e){
+			messageBean.addMessage("wrongCheckPassword");
+		}
 		return "/frontOffice/client/client";
 	}
 }

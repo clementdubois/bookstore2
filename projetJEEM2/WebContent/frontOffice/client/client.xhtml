@@ -1,46 +1,43 @@
-<ui:composition xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://java.sun.com/jsf/facelets"
-  xmlns:f="http://java.sun.com/jsf/core" xmlns:h="http://java.sun.com/jsf/html" xmlns:p="http://primefaces.org/ui" template="../template.xhtml">
-  <ui:define name="content">
-    <h:form id="inscriptionForm">
-   	  <h:messages globalOnly="true"/>
-		Votre Profil
-		<h:panelGrid columns="1" style="margin-bottom:10px" cellpadding="5">
-			<h:column>
-	  			Login : <h:inputText value="#{clientController.currentClient.login}" />
-			</h:column>
-			
-		            <h:column>
-		        	<h:outputText value="Changer le mot de passe : " />
-		            <h:selectBooleanCheckbox binding="#{showUserInfo}" value="#{inscriptionForm.changePassword}">
-		                <f:ajax event="click" render="@form" />
-		            </h:selectBooleanCheckbox>
-		            </h:column>
-		        <h:panelGrid columns="1" rendered="#{not empty showUserInfo.value and showUserInfo.value}">
-		            <h:column>
-						Ancien mot de passe : 
-						<h:inputText id="oldPassword" value="#{inscriptionForm.passwordCheck}" styleClass="span3"/>
-						<h:message for="password"></h:message>
-					</h:column>
-		            <h:column>
-						Nouveau mot de passe : #{clientController.currentClient.password}
-						<h:inputText id="newPassword" value="#{clientController.currentClient.password}" styleClass="span3"/>
-						<h:message for="password"></h:message>
-					</h:column>
-					<h:column rendered="#{inscriptionForm.changePassword}">
-						<h:outputText value="#{strings['passwordConfirmation']}" /> :
-						<h:inputText id="passwordConfirmation" value="#{inscriptionForm.passwordConfirmation}" styleClass="span3"/>
-						<h:message for="passwordConfirmation"></h:message>
-					</h:column>
-		        </h:panelGrid>
-		    	
-			<h:column>
-	  			Prenom : <h:inputText value="#{clientController.currentClient.firstName}" />
-			</h:column>
-			<h:column>
-				Nom : <h:inputText value="#{clientController.currentClient.lastName}" />
-			</h:column>
-      		<h:commandButton action="#{clientController.update}" value="#{strings['submit']}"/>
-	  	</h:panelGrid>
-    </h:form>
-  </ui:define>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui" template="../template.xhtml">
+	<ui:define name="content">
+		<h:form id="inscriptionForm">
+			<h:messages globalOnly="true" />
+				Votre Profil
+			<h:panelGrid columns="1" style="margin-bottom:10px" cellpadding="5">
+				<h:column>
+	  			Prenom : <h:inputText value="#{inscriptionForm.firstName}" required="true"/>
+				</h:column>
+				<h:column>
+				Nom : <h:inputText value="#{inscriptionForm.lastName}" required="true"/>
+				</h:column>
+				<h:commandButton action="#{clientController.update}"
+					value="#{strings['submit']}" />
+			</h:panelGrid>
+		</h:form>
+		<h:form id="changePassword">
+			 <h:messages globalOnly="true"/>
+			<h:panelGrid columns="1">
+				<h:column>
+					Ancien mot de passe : 
+					<h:inputText id="passwordCheck" value="#{passwordForm.passwordCheck}" required="true" styleClass="span3" />
+					<h:message for="passwordCheck"></h:message>
+				</h:column>
+				<h:column>
+					Nouveau mot de passe :
+					<h:inputText id="password" value="#{passwordForm.password}" required="true" styleClass="span3" />
+					<h:message for="password"></h:message>
+				</h:column>
+				<h:column>
+					<h:outputText value="#{strings['passwordConfirmation']}" /> :
+					<h:inputText id="passwordConfirmation" value="#{passwordForm.passwordConfirmation}" required="true" styleClass="span3" />
+					<h:message for="passwordConfirmation"></h:message>
+				</h:column>
+				<h:commandButton action="#{clientController.changePassword}" value="#{strings['submit']}" />
+			</h:panelGrid>
+		</h:form>
+	</ui:define>
 </ui:composition>
