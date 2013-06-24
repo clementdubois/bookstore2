@@ -26,6 +26,9 @@ import javax.persistence.OneToMany;
 public class Client extends Persistent {
   private String login;
   private String password;
+
+  private String firstName;
+  private String lastName;
   
   private List<Order> commandes = new ArrayList<Order>();
   
@@ -61,5 +64,17 @@ public class Client extends Persistent {
   public void setCommandes(List<Order> commandes) {
     this.commandes = commandes;
   }
+public String getFirstName() {
+	return firstName;
+}
+public void setFirstName(String firstName) {
+	this.firstName = firstName;
+}
+public String getLastName() {
+	return lastName;
+}
+public void setLastName(String lastName) {
+	this.lastName = lastName;
+}
 
 }

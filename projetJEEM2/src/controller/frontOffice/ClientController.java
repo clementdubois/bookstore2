@@ -74,7 +74,7 @@ public class ClientController implements Serializable {
 	public String doInscription(){
 		try {
 			clientService.inscription(inscriptionForm.getLogin(), inscriptionForm.getPassword(), inscriptionForm.getPasswordConfirmation());
-			return "/frontOffice/login";
+			return "/frontOffice/home";
 		} catch (LoginUsedException e) {
 			messageBean.addMessage("clientAlreadyExists");
 			return "/frontOffice/inscription";
@@ -101,4 +101,12 @@ public class ClientController implements Serializable {
 	public void setCurrentOrder(Order currentOrder) {
 		this.currentOrder = currentOrder;
 	}
+	
+	@Produces
+	@Named
+	public String update(){
+		clientService.update(getCurrentClient());
+		return "/frontOffice/client/client";
+	}
+	
 }

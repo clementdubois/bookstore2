@@ -3,18 +3,22 @@
   <ui:define name="content">
     <h:form id="contentForm">
    	  <h:messages globalOnly="true"/>
-      <h:panelGrid columns="2">
-        <f:facet name="header">#{strings['orders']}</f:facet>
-        <h:dataTable value="#{currentClient.commandes}" var="commande">
-	  		<h:column>
-				<h:commandLink action="#{clientController.detailCommande(commande)}" value="#{strings['order']} num. #{commande.id}" />
+		Votre Profil
+		<h:panelGrid columns="1" style="margin-bottom:10px" cellpadding="5">
+			<h:column>
+	  			Login : <h:inputText value="#{clientController.currentClient.login}" />
 			</h:column>
-	  	</h:dataTable>
-      </h:panelGrid>
-      <h:panelGrid columns="2">
-        <f:facet name="header">#{strings['login']}</f:facet>
-        <h:outputText value="#{currentClient.login}" />
-      </h:panelGrid>
+			<h:column>
+	  			Mot de passe : <h:inputText value="#{clientController.currentClient.password}" />
+			</h:column>
+			<h:column>
+	  			Prenom : <h:inputText value="#{clientController.currentClient.firstName}" />
+			</h:column>
+			<h:column>
+				Nom : <h:inputText value="#{clientController.currentClient.lastName}" />
+			</h:column>
+      	<h:commandButton action="#{clientController.update}" value="#{strings['submit']}"/>
+	  	</h:panelGrid>
     </h:form>
   </ui:define>
 </ui:composition>
