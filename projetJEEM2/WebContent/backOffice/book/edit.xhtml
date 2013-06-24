@@ -7,21 +7,16 @@
 		       	<h:inputText id="title" value="#{bookForm.title}" required="true" />
 		       	<h:message for="title"></h:message>
 		       	<h:outputText value="#{strings['category']}" />
-		       	<h:selectOneMenu id="category" converter="#{categoryConverterBean}" value="#{bookForm.category}" title="Category" >
-		       		<f:selectItem noSelectionoption="true" itemLabel="#{strings['list.choose']}" />
-		            <f:selectItems value="#{categoryController.categories}" var="category" itemlabel="#{category.title}" itemValue="#{category}" />
+		       	
+		       	<h:selectOneMenu id="cat" converter="#{categoryConverter}" value="#{bookForm.category}" title="Category" >
+		            <f:selectItems value="#{categoryController.categories}" var="bookCat" itemValue="#{bookCat}" itemLabel="#{bookCat.title}" />
 		        </h:selectOneMenu>
 		       	<h:message for="category"></h:message>
-		        <h:selectOneMenu id="authors" converter="#{authorConverterBean}" value="#{bookForm.authors}" title="Authors" >
-		       		<f:selectItem noSelectionoption="true" itemLabel="#{strings['list.choose']}" />
-		            <f:selectItems value="#{authorController.authors}" var="author" itemlabel="#{author.firstName} #{author.lastName}" itemValue="#{author}" />
-		        </h:selectOneMenu>
-		       	<h:message for="authors"></h:message>
 		       	<h:outputText value="#{strings['price']}" />
 		       	<h:inputText id="price" value="#{bookForm.price}" required="true" />
 		       	<h:message for="price"></h:message>
 		    </h:panelGrid>
-   			<h:commandButton action="#{bookController.updateBook(book)}" value="#{strings['edit']}"/>
+   			<h:commandButton action="#{bookController.updateBook}" value="#{strings['edit']}"/>
     </h:form>
   </ui:define>
 </ui:composition>

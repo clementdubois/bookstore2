@@ -1,7 +1,7 @@
 <ui:composition xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://java.sun.com/jsf/facelets"
   xmlns:f="http://java.sun.com/jsf/core" xmlns:h="http://java.sun.com/jsf/html" template="template.xhtml">
   <ui:define name="content">
-    <h:form id="contentForm">
+    <h:form id="contentForm" rendered="#{!adminController.loggedIn}">
       <h:panelGrid columns="3">
         <h:outputText value="#{strings['login']}" />
         <h:inputText id="login" value="#{loginForm.login}" required="true" />
@@ -12,6 +12,17 @@
       </h:panelGrid>
       <h:commandButton action="#{adminController.doLogin}" value="#{strings['submit']}"/>
       <h:messages globalOnly="true"/>
+    </h:form>
+    <h:form id="entityForm" rendered="#{adminController.loggedIn}">
+	    <div>
+	    	<h:commandLink action="author/index.jsf" value="#{strings['management.authors']}" />
+    	</div>
+    	<div>
+    		<h:commandLink action="book/index.jsf" value="#{strings['management.books']}" />
+    	</div>
+    	<div>
+        	<h:commandLink action="category/index.jsf" value="#{strings['management.categories']}" />
+        </div>
     </h:form>
       
   </ui:define>

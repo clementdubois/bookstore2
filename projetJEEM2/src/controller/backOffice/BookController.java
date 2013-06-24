@@ -74,7 +74,7 @@ public class BookController implements Serializable {
 	
 	public String editBook(Book b){
 		bookForm.setTitle(b.getTitle());
-		bookForm.setCategory(b.getCategory());
+		//bookForm.setCategory(b.getCategory());
 		bookForm.setPrice(b.getPrice());
 		selectedCategory = b.getCategory();
 		selectedId = selectedCategory.getId();
@@ -82,7 +82,7 @@ public class BookController implements Serializable {
 		return "/backOffice/book/edit";
 	}
 	//*
-	public String updateBook(Long bookId){
+	public String updateBook(){
 		book.setTitle(bookForm.getTitle());
 		book.setCategory(bookForm.getCategory());
 		book.setPrice(bookForm.getPrice());/*
