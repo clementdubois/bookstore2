@@ -2,14 +2,13 @@
   xmlns:f="http://java.sun.com/jsf/core" xmlns:h="http://java.sun.com/jsf/html" template="../template.xhtml">
   <ui:define name="content">
     <h:form id="bookForm">
-         	<h:dataTable value="#{bookController.books}" var="book">
+         <h:dataTable value="#{bookController.books}" var="book">
 	  		<f:facet name="header">#{strings['books']}</f:facet>
 	  		<h:column>
 				<h:commandLink action="#{bookController.editBook(book)}" value="#{book.getTitle()}" />
 			</h:column>
 			<h:column>
-				<h:commandLink action="#{bookController.deleteBook(book.id)}" onclick="if (!confirm(\'#{strings['confirm.delete']}\')) return false;" 
-				value="Supprimer" />
+				<h:commandLink action="#{bookController.deleteBook(book.id)}" onclick="if (!confirm(\'#{strings['confirm.delete']}\')) return false;" value="Supprimer" />
 			</h:column>
 	  	</h:dataTable>
       	<h:commandLink action="./add.jsf" value="#{strings['add']}"/>
