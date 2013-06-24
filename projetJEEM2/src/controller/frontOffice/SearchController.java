@@ -28,17 +28,12 @@ public class SearchController implements Serializable {
 	private AuthorService authorService;
 	private List results;
 
-	@Produces
+	/*@Produces
 	@Named
 	public String doSearch(){
-		if(searchForm.getOption().equals("book"))
-			results = bookService.search(searchForm.getSearchText());
-		else if(searchForm.getOption().equals("category"))
-			results = categoryService.search(searchForm.getSearchText());
-		else if(searchForm.getOption().equals("author"))
-			results = authorService.search(searchForm.getSearchText());
-		return "/frontOffice/search/result";
-	}
+		results = bookService.search(searchForm.getSearchText());
+		return "/frontOffice/books/index";
+	}*/
 	
 	public String beanType(){
 		return searchForm.getOption();
