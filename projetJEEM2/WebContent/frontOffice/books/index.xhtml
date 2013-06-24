@@ -7,9 +7,10 @@
 			<ul class="thumbnails">
 				<ui:repeat value="#{bookFrontController.books}" var="book">
 					<li class="span6 clearfix">
-						<div class="thumbnail clearfix">
-							<h:graphicImage name="#{book.photo}" library="images" styleClass="pull-left span2 clearfix"/>
-	
+						<div class="thumbnail clearfix livreItem">
+							<div class="livrePhoto">
+								<h:graphicImage name="#{book.photo}" library="images" styleClass="pull-left span2 clearfix"/>
+							</div>
 							<div class="caption">
 								<p:commandLink actionListener="#{panierBean.addBook(book.id)}"
 									value="Ajouter au panier" update=":form_panier"
@@ -21,7 +22,13 @@
 									</ui:insert>
 								</h4>
 								<small><b>Titre: </b>#{book.title}</small><br/>
-								<small><b>Prix: </b>#{book.price}</small>
+								<small><b>Prix: </b>#{book.price}</small><br/>
+								<small><b>Catégorie: </b>#{book.category.title}</small><br />
+								<small><b>Auteurs: </b>
+									<h:outputText value="#{book.authors}">
+										<f:converter converterId="listAuthorsConverter"/> 
+									</h:outputText>
+								</small>
 							</div>
 						</div>
 					</li>
