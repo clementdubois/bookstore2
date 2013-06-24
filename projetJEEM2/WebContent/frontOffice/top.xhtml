@@ -75,6 +75,10 @@
 							<li id="localChooser"><dgc:localeChooser /></li>
 						</ul>
 					</h:form>
+					<h:form styleClass="navbar-form pull-right">
+						<h:inputText id="searchText" value="#{searchForm.searchText}" styleClass="span2"/>
+						<h:commandButton action="#{bookFrontController.doSearch}" value="OK" styleClass="btn"/>
+					</h:form>
 				</div>
 				<!--/.nav-collapse -->
 			</div>

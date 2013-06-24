@@ -6,11 +6,14 @@ import java.util.List;
 import javax.ejb.EJB;
 import javax.enterprise.context.RequestScoped;
 import javax.enterprise.context.SessionScoped;
+import javax.enterprise.inject.Produces;
 import javax.faces.bean.ManagedBean;
 import javax.inject.Inject;
 import javax.inject.Named;
 
 import org.slf4j.Logger;
+
+import beans.SearchForm;
 
 import ejb.BookService;
 import ejb.CategoryService;
@@ -23,6 +26,8 @@ public class BookFrontController implements Serializable {
 	
 	@Inject
 	private Logger log;
+	@Inject
+	private SearchForm searchForm;
 	@EJB
 	private BookService bookService;
 	@EJB
@@ -34,14 +39,19 @@ public class BookFrontController implements Serializable {
 	private Book book;
 	
 	public String index(Long c){
-		System.out.println(c);
-		System.out.println("INDIXxxxxx-------");
 		if(c != null){
 			Category category = categoryService.find(c);
 			books = category.getBooks();
 		}else{
 			books = (List<Book>) bookService.findAll();
 		}
+		return "/frontOffice/books/index";
+	}
+	
+	@Produces
+	@Named
+	public String doSearch(){
+		books = (List<Book>) bookService.search(searchForm.getSearchText());
 		return "/frontOffice/books/index";
 	}
 	
@@ -65,4 +75,5 @@ public class BookFrontController implements Serializable {
 	public void setBook(Book book) {
 		this.book = book;
 	}
+	
 }

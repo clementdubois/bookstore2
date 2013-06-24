@@ -20,7 +20,11 @@ import javax.xml.bind.annotation.XmlRootElement;
 @Entity()
 @NamedQueries({
 @NamedQuery(name = "Book.findAll", query = "Select b From Book b"),
-@NamedQuery(name = "Book.findLikeOnTitle", query = "Select b From Book b where upper(b.title) like :like"),
+@NamedQuery(name = "Book.findLikeOnTitle", query = "Select distinct b From Book b inner join b.authors a " +
+		"where upper(b.title) like :like " +
+		"or upper(b.category.title) like :like " +
+		"or upper(a.lastName) like :like " +
+		"or upper(a.firstName) like :like"),
 @NamedQuery(name = "Book.findByCategory", query = "Select b From Book b where b.category = :category")
 })
 

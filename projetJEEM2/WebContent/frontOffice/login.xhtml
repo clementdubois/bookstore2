@@ -1,5 +1,4 @@
 <ui:composition xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://java.sun.com/jsf/facelets"
-
   xmlns:f="http://java.sun.com/jsf/core" xmlns:h="http://java.sun.com/jsf/html" xmlns:p="http://primefaces.org/ui">
   
 	<p:panel id="loginForm">
@@ -12,18 +11,4 @@
 		<h:message for="password"></h:message>
 		<p:commandButton actionListener="#{clientController.doLogin}" value="#{strings['submit']}" update=":form_panier" oncomplete="openLoginForm()"/>
 	</p:panel>
-    
-	<h:form id="searchForm">
-	
-		<h:panelGrid columns="2" style="margin-bottom:10px" cellpadding="5">  
-	        <h:outputText value="Options: " />  
-	        <p:selectOneRadio id="option" value="#{searchForm.option}">  
-	            <f:selectItem itemLabel="Book" itemValue="book" />  
-	            <f:selectItem itemLabel="Category" itemValue="category" />  
-	            <f:selectItem itemLabel="Author" itemValue="author" />  
-	        </p:selectOneRadio>
-	    </h:panelGrid>
-	    <h:inputText id="searchText" value="#{searchForm.searchText}"/>
-      	<h:commandButton action="#{searchController.doSearch}" value="#{strings['submit']}"/>
-	</h:form>
 </ui:composition>
