@@ -1,0 +1,51 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui" template="../template.xhtml">
+	<ui:define name="content">
+		<div class="span8 well">
+		    <legend>Mon Profile</legend>
+		    <div class="row">
+				<h:form id="inscriptionForm" styleClass="span4">
+					<h:messages globalOnly="true" />
+					<h:panelGrid columns="1">
+						<h:column>
+			  			Votre Prenom : 
+			  			<h:inputText value="#{inscriptionForm.firstName}" required="true" styleClass="span3" id="prenom"/>
+			  			<p class="text-error"><h:message for="prenom"></h:message></p>
+						</h:column>
+						<h:column>
+						Votre Nom : 
+						<h:inputText value="#{inscriptionForm.lastName}" required="true" styleClass="span3" id="nom"/>
+						<p class="text-error"><h:message for="nom"></h:message></p>
+						</h:column>
+						<h:commandButton action="#{clientController.update}"
+							value="#{strings['submit']}" styleClass="btn btn-warning"/>
+					</h:panelGrid>
+				</h:form>
+				<h:form id="changePassword" styleClass="span4">
+					 <h:messages globalOnly="true"/>
+					<h:panelGrid columns="1">
+						<h:column>
+							Ancien mot de passe : 
+							<h:inputText id="passwordCheck" value="#{passwordForm.passwordCheck}" required="true" styleClass="span3" />
+							<p class="text-error"><h:message for="passwordCheck"></h:message></p>
+						</h:column>
+						<h:column>
+							Nouveau mot de passe :
+							<h:inputText id="password" value="#{passwordForm.password}" required="true" styleClass="span3" />
+							<p class="text-error"><h:message for="password"></h:message></p>
+						</h:column>
+						<h:column>
+							<h:outputText value="#{strings['passwordConfirmation']}" /> :
+							<h:inputText id="passwordConfirmation" value="#{passwordForm.passwordConfirmation}" required="true" styleClass="span3" />
+							<p class="text-error"><h:message for="passwordConfirmation"></h:message></p>
+						</h:column>
+						<h:commandButton action="#{clientController.changePassword}" value="#{strings['submit']}" styleClass="btn btn-warning"/>
+					</h:panelGrid>
+				</h:form>
+			</div>
+		</div>
+	</ui:define>
+</ui:composition>

@@ -10,8 +10,8 @@
 				<a class="btn btn-navbar" data-toggle="collapse"
 					data-target=".nav-collapse"> <span class="icon-bar"></span> <span
 					class="icon-bar"></span> <span class="icon-bar"></span>
-				</a> <a class="brand" href="#{request.contextPath}/frontOffice/home.jsf">Book
-					Store</a>
+				</a> 
+				<a class="brand" href="#{request.contextPath}/frontOffice/home.jsf">Book Store</a>
 				<div class="nav-collapse">
 					<h:form>
 						<ul class="nav">
@@ -37,38 +37,37 @@
 					<h:form id="form_panier">
 						<ul class="nav pull-right">
 							<h:panelGroup rendered="#{clientController.loggedIn}">
-								<li class="dropdown">
-									<a class="dropdown-toggle" href="#" data-toggle="dropdown">
-										Mon profil <b class="caret"></b>
-									</a>
-									<ul class="dropdown-menu" style="padding: 15px; padding-bottom: 0px;">
-										<li>
-											<a href="#{request.contextPath}/frontOffice/client/client.jsf">Voir</a>
+								<li class="dropdown"><a class="dropdown-toggle" href="#"
+									data-toggle="dropdown"> Mon profil <b class="caret"></b>
+								</a>
+									<ul class="dropdown-menu"
+										style="padding: 15px; padding-bottom: 0px;">
+										<li><a
+											href="#{request.contextPath}/frontOffice/client/client.jsf">Voir</a>
+										</li>
+										<li><a
+											href="#{request.contextPath}/frontOffice/client/edit.jsf">Modifier</a>
 										</li>
 										<li class="divider"></li>
-										<li>
-											<h:commandLink action="#{clientController.doLogout}" value="Se déconnecter" />
-										</li>
-									</ul>
-								</li>	
+										<li><h:commandLink action="#{clientController.doLogout}"
+												value="Se déconnecter" /></li>
+									</ul></li>
 							</h:panelGroup>
 							<h:panelGroup rendered="#{!clientController.loggedIn}">
 								<li><a
 									href="#{request.contextPath}/frontOffice/inscription.jsf">S'inscrire</a>
 								</li>
 								<li class="divider-vertical"></li>
-								<li class="dropdown" id="loginDropdown">
-									<a
+								<li class="dropdown" id="loginDropdown"><a
 									class="dropdown-toggle" href="#" data-toggle="dropdown">Se
 										connecter <strong class="caret"></strong>
-									</a>
+								</a>
 									<div class="dropdown-menu"
 										style="padding: 15px; padding-bottom: 0px;">
 										<ui:insert name="login">
 											<ui:include src="/frontOffice/login.xhtml" />
 										</ui:insert>
-									</div>
-								</li>
+									</div></li>
 							</h:panelGroup>
 							<h:panelGroup rendered="#{not empty panierBean.panier.items}">
 								<li class="dropdown"><a class="dropdown-toggle" href="#"
@@ -85,8 +84,10 @@
 						</ul>
 					</h:form>
 					<h:form styleClass="navbar-form pull-right">
-						<h:inputText id="searchText" value="#{searchForm.searchText}" styleClass="span2"/>
-						<h:commandButton action="#{bookFrontController.doSearch}" value="OK" styleClass="btn"/>
+						<h:inputText id="searchText" value="#{searchForm.searchText}"
+							styleClass="span2" />
+						<h:commandButton action="#{bookFrontController.doSearch}"
+							value="OK" styleClass="btn" />
 					</h:form>
 				</div>
 				<!--/.nav-collapse -->
