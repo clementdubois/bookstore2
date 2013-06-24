@@ -5,17 +5,12 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
-import javax.faces.convert.FacesConverter;
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
- 
+import javax.inject.Named;
+
 import ejb.CategoryService;
 import entities.Category;
  
- 
- 
-@ManagedBean(name = "categoryConverterBean") 
-@FacesConverter(value = "categoryConverter")
+@Named("categoryConverter")
 public class CategoryConverter implements Converter {
  
     @EJB

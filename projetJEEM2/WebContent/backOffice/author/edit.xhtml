@@ -10,7 +10,7 @@
 		       	<h:inputText id="lastName" value="#{authorForm.lastName}" required="true" />
 		       	<h:message for="lastName"></h:message>
 		    </h:panelGrid>
-   			<h:commandButton action="#{authorController.updateAuthor(author)}" value="#{strings['edit']}"/>
+   			<h:commandButton action="#{authorController.updateAuthor()}" value="#{strings['edit']}"/>
     </h:form>
   </ui:define>
 </ui:composition>

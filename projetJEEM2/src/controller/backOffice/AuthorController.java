@@ -60,7 +60,7 @@ public class AuthorController implements Serializable {
 		return "/backOffice/author/edit";
 	}
 	//*
-	public String updateAuthor(Long authorId){
+	public String updateAuthor(){
 		author.setFirstName(authorForm.getFirstName());
 		author.setLastName(authorForm.getLastName());
 		authorService.update(author);

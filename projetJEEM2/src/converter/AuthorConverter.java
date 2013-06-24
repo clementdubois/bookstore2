@@ -1,19 +1,15 @@
 package converter;
  
 import javax.ejb.EJB;
-import javax.faces.bean.ManagedBean;
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
-import javax.faces.convert.FacesConverter;
+import javax.inject.Named;
 
 import ejb.AuthorService;
 import entities.Author;
  
- 
- 
-@ManagedBean(name = "authorConverterBean") 
-@FacesConverter(value = "authorConverter")
+@Named("authorConverter")
 public class AuthorConverter implements Converter {
  
     @EJB
